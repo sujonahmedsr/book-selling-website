@@ -10,9 +10,8 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { FaRegHandshake } from "react-icons/fa6";
 const Footer = () => {
     return (
-
         <footer className='bg-gray-100 border-t'>
-            <div className="flex flex-wrap justify-between container mx-auto py-5 text-sm">
+            <div className="flex lg:flex-row flex-col flex-wrap justify-between container mx-auto p-5 text-sm space-y-5">
                 <div className='text-gray-600 space-y-5'>
                     <Link to={'/'}>
                         <img src={logo} className='w-32' alt={logo} />

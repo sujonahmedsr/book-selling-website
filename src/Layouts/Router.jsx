@@ -6,6 +6,9 @@ import SignUp from "../Pages/SignUp";
 import AllCards from "../Pages/CheckOut/AllCards";
 import HeroPage from "../Components/HeroPage";
 import OrderDetails from "../Pages/OrderPage/OrderDetails";
+import BooksPage from "../Components/Books/BooksPage";
+import Electronics from "../Components/Electronics/Electronics";
+import BooksDetails from "../Components/Books/BooksDetails";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +19,18 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <HeroPage></HeroPage>
+            },
+            {
+                path: '/AllBooks',
+                element: <BooksPage></BooksPage>
+            },
+            {
+                path: '/booksDetails/:id',
+                element: <BooksDetails></BooksDetails>
+            },
+            {
+                path: '/Electronics',
+                element: <Electronics></Electronics>
             },
             {
                 path: '/AllCards',
