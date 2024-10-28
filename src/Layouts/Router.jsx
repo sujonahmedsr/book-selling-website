@@ -5,6 +5,7 @@ import SignIn from "../Pages/SignIn";
 import SignUp from "../Pages/SignUp";
 import AllCards from "../Pages/CheckOut/AllCards";
 import HeroPage from "../Components/HeroPage";
+import OrderDetails from "../Pages/OrderPage/OrderDetails";
 
 const router = createBrowserRouter([
     {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
             {
                 path: '/AllCards',
                 element: <AllCards></AllCards>
-            }
+            },
+            {
+                path: '/Order_Place',
+                element: <OrderDetails></OrderDetails>
+            },
         ]
     },
     {

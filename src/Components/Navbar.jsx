@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from '../assets/Img/rokomari_logo.webp'
 import { IoIosSearch } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
@@ -7,7 +7,9 @@ import { FaUsersRectangle } from "react-icons/fa6";
 import NavbarBottom from "./Shared/NavbarBottom";
 import { useEffect, useState } from "react";
 const Navbar = () => {
+    const location = useLocation()
     const [show, setShow] = useState(false)
+    const [hide, setHide] = useState(true)
     const controlNavbar = () => {
         if (window.scrollY > 50) {
             setShow(true)
@@ -16,11 +18,15 @@ const Navbar = () => {
         }
     }
     useEffect(() => {
+        location.pathname === '/AllCards' || location.pathname === '/Order_Place'  ? setHide(false) : setHide(true)
+
         window.addEventListener('scroll', controlNavbar)
         return () => {
             window.removeEventListener('scroll', controlNavbar)
         }
-    }, [])
+        
+    }, [location])
+    
 
     return (
         <>
@@ -38,11 +44,11 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex items-center">
-                        <Link to={'/signIn'} className="rounded dark:bg-violet-600 dark:text-gray-50 flex items-center gap-2 mx-4 hover:bg-red-500 duration-300 hover:text-white px-4 py-2">
+                        <Link to={'/signIn'} className="rounded dark:text-gray-50 flex items-center gap-2 mx-4 hover:bg-red-500 duration-300 hover:text-white px-4 py-2 text-gray-700">
                             <FaRegUser className="text-xl" />
                             Sing in
                         </Link>
-                        <button type="button" className="rounded flex items-center gap-2 mx-4 hover:text-red-500 duration-300"> <FaUsersRectangle className="text-xl flex" /> Became a seller</button>
+                        <button type="button" className="rounded flex items-center gap-2 mx-4 hover:text-red-500 duration-300 text-gray-700"> <FaUsersRectangle className="text-xl flex" /> Became a seller</button>
                         <Link to={'/AllCards'} type="button" className="rounded bg-red-500 hover:bg-red-600 px-4 py-2 text-white mx-4 flex items-center space-x-2">
                             <IoCartOutline className="text-2xl" />
                             <span className="font-bold">1</span>
@@ -55,7 +61,7 @@ const Navbar = () => {
                 </button> */}
                 </div>
                 {
-                    show ||
+                    show || hide &&
                     <NavbarBottom />
                 }
             </header>

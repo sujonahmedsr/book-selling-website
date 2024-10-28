@@ -32,10 +32,10 @@ const NavbarBottom = () => {
         }
     ]
     return (
-        <div className="flex items-center justify-center gap-10 container mx-auto font-thin text-gray-700 pt-2 text-lg">
+        <div className="flex items-center justify-center gap-10 font-thin text-gray-700 py-2 text-lg border-b border-gray-300">
             {
                 listOfNavigation.map((item, id) => <div key={id + 1}>
-                    <Link to={item.link}>{item.title}</Link>
+                    <Link className="hover:text-red-500 duration-300" to={item.link}>{item.title}</Link>
                 </div>)
             }
         </div>

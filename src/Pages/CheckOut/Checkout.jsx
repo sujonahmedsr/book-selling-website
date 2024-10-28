@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import cod from '../../assets/icons/rok-icon-cod.svg'
 import moneyback from '../../assets/icons/rok-icon-moneyback.svg'
 import product from '../../assets/icons/rok-icon-original-product.svg'
@@ -24,9 +25,11 @@ const Checkout = () => {
                         <p className="text-sm text-gray-700">No VAT</p>
                     </div>
                 </div>
-                <button className="mt-6 w-full rounded-md bg-red-500 py-2 font-medium text-blue-50 hover:bg-red-600 flex items-center justify-center gap-2 ">
-                    Check out <FaArrowRightLong />
-                </button>
+                <Link to={'/Order_Place'}>
+                    <button className="mt-6 w-full rounded-md bg-red-500 py-2 font-medium text-blue-50 hover:bg-red-600 flex items-center justify-center gap-2 ">
+                        Check out <FaArrowRightLong />
+                    </button>
+                </Link>
             </div>
 
             <div className="rounded-lg border bg-white p-6 shadow-md mt-10 space-y-5">
@@ -46,7 +49,7 @@ const Checkout = () => {
                     <img src={replacement} alt={replacement} />
                     <p className="text-gray-700">১০০% টাকা ফেরত গ্যারান্টি</p>
                 </div>
-                
+
             </div>
         </div>
     );
