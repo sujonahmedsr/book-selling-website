@@ -30,7 +30,7 @@ const OfferPage = () => {
 
 
     return timeLeft?.timeUp ? null : (
-        <div className="container mx-auto mt-16">
+        <div className="container mx-auto mt-24">
             <div className="flex lg:flex-row flex-col items-center justify-between gap-10">
                 <div className="space-y-3 max-w-sm text-center">
                     <h2 className="text-lg font-semibold text-red-500">Upcoming Campaign <br /></h2>

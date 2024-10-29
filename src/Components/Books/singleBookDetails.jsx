@@ -28,7 +28,7 @@ const SingleBookDetails = ({ bookDeta }) => {
                         </div>
                     </div>
                     <div className="mt-5 space-x-5">
-                        <button className="text-lg font-semibold px-6 py-2 bg-transparent border-2 border-gray-700 
+                        <button className="text-lg font-semibold px-6 py-2 border-2 border-gray-700 
                         bg-gray-700 hover:bg-gray-800 text-white duration-300">Add To Cart</button>
                         <button className="text-lg font-semibold border-2 border-red-500 text-white px-6 py-2 bg-red-500  hover:bg-red-600 hover:text-white duration-300">Add To Cart</button>
                     </div>

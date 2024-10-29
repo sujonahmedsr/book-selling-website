@@ -5,7 +5,7 @@ import SingleBookDetails from "./singleBookDetails";
 const BooksDetails = () => {
     const {id} = useParams()
     const {data: bookDeta, isLoading, isError, error} = useSingleBooksApiQuery(id)
-    console.log(bookDeta);
+
     
     let content = null
 
