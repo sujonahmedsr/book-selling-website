@@ -96,7 +96,7 @@ const CustomarShippingDetails = () => {
                 <div className="border-t border-gray-300 p-5">
                     <button
                         type="submit"
-                        className="block w-full rounded-md bg-red-500 px-3.5 py-2.5 text-center text-lg font-semibold text-white hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                        className="block w-full rounded-md bg-red-500 px-3.5 py-2.5 text-center text-lg font-semibold text-white hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 duration-300"
                     >
                         Confirm Order
                     </button>

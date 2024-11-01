@@ -4,14 +4,22 @@ import moneyback from '../../assets/icons/rok-icon-moneyback.svg'
 import product from '../../assets/icons/rok-icon-original-product.svg'
 import replacement from '../../assets/icons/rok-icon-replacement.svg'
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useSelector } from 'react-redux';
 const Checkout = () => {
-
+    const { selectedItems, totalPrice } = useSelector(state => state.cart)
     return (
         <div>
-            <div className="mt-6 rounded-lg border bg-white p-6 shadow-md md:mt-0">
+            <div className="mt-6 rounded-lg border bg-white p-6 shadow-md md:mt-0 space-y-3">
+                <div>
+                    <h1 className='text-xl font-semibold'>Your Cart Summary</h1>
+                </div>
+                <div className="flex justify-between">
+                    <p className="text-gray-700">Select Items</p>
+                    <p className="text-gray-700">{selectedItems}</p>
+                </div>
                 <div className="mb-2 flex justify-between">
                     <p className="text-gray-700">Subtotal</p>
-                    <p className="text-gray-700">$120</p>
+                    <p className="text-gray-700">TK. {totalPrice.toFixed(2)}</p>
                 </div>
                 <div className="flex justify-between">
                     <p className="text-gray-700">Shipping</p>
@@ -21,12 +29,11 @@ const Checkout = () => {
                 <div className="flex justify-between">
                     <p className="text-lg font-bold">Total</p>
                     <div className="">
-                        <p className="mb-1 text-lg font-bold">$120 USD</p>
-                        <p className="text-sm text-gray-700">No VAT</p>
+                        <p className="mb-1 text-lg font-bold">TK. {totalPrice.toFixed(2)}</p>
                     </div>
                 </div>
                 <Link to={'/Order_Place'}>
-                    <button className="mt-6 w-full rounded-md bg-red-500 py-2 font-medium text-blue-50 hover:bg-red-600 flex items-center justify-center gap-2 ">
+                    <button className="mt-6 w-full rounded-md bg-red-500 py-2 font-medium text-blue-50 hover:bg-gray-700 flex items-center justify-center gap-2 duration-300">
                         Check out <FaArrowRightLong />
                     </button>
                 </Link>

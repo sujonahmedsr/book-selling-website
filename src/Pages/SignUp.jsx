@@ -100,7 +100,7 @@ const SignUp = () => {
                     <div>
                         <button
                             type="submit"
-                            className="flex w-full justify-center rounded-md bg-red-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-600 "
+                            className="flex w-full justify-center rounded-md bg-red-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 duration-300"
                         >
                             Sign up
                         </button>
@@ -109,7 +109,7 @@ const SignUp = () => {
 
                 <p className="mt-10 text-center text-sm text-gray-500">
                     Have Account?{' '}
-                    <Link to={'/SignIn'} className="font-semibold leading-6 text-red-600 hover:text-red-500">
+                    <Link to={'/SignIn'} className="font-semibold leading-6 text-red-600 hover:text-gray-700 duration-300">
                         Sign in.
                     </Link>
                 </p>

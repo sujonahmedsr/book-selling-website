@@ -4,14 +4,18 @@ import { IoIosSearch } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import { IoCartOutline, IoCloseOutline } from "react-icons/io5";
 import { FaUsersRectangle } from "react-icons/fa6";
-
 import { useState } from "react";
 import { listOfNavigation } from "./Shared/navbarlist";
 import useCustomNavbarSH from "../hooks/customNavbarSH";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
     const [isSideMenuOpen, setMenu] = useState(false);
     const [show, hide, location] = useCustomNavbarSH()
+
+    const { carts } = useSelector(state => state.cart)
+
+
 
     return (
         <>
@@ -38,9 +42,9 @@ const Navbar = () => {
 
                         <button type="button" className="rounded flex items-center gap-2 mx-4 hover:text-red-500 duration-300 text-gray-700"> <FaUsersRectangle className="text-xl flex" /> Became a seller</button>
 
-                        <Link to={'/AllCards'} type="button" className="rounded bg-red-500 hover:bg-red-600 px-4 py-2 text-white mx-4 flex items-center space-x-2">
+                        <Link to={'/AllCards'} type="button" className="rounded bg-red-500 hover:bg-gray-700 px-4 py-2 text-white mx-4 flex items-center space-x-2 duration-300">
                             <IoCartOutline className="text-2xl" />
-                            <span className="font-bold">1</span>
+                            <span className="font-bold">{carts?.length}</span>
                         </Link>
                     </div>
 
@@ -63,8 +67,8 @@ const Navbar = () => {
                         <div className="flex items-center justify-center gap-10 font-thin text-gray-700 py-2 text-lg">
                             {
                                 listOfNavigation.map((item, id) => <div key={id + 1}>
-                                    <Link 
-                                    className={`hover:text-red-500 ${location?.pathname === item?.link && 'font-medium text-red-500'} duration-300`} to={item.link}>{item.title}</Link>
+                                    <Link
+                                        className={`hover:text-red-500 ${location?.pathname === item?.link && 'font-medium text-red-500'} duration-300`} to={item.link}>{item.title}</Link>
                                 </div>)
                             }
                         </div>
