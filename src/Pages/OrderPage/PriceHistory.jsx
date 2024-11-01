@@ -26,7 +26,7 @@ const PriceHistory = () => {
             <div className="flex items-center justify-between">
                 <p className="text-lg font-semibold  text-gray-700">Total Payable Amount</p>
                 <div className="">
-                    <p className="mb-1 text-lg font-semibold  text-gray-700">TK. {(totalPrice + shipping).toFixed(2)}</p>
+                    <p className="mb-1 text-lg font-semibold  text-gray-700">TK. {(totalPrice + selectedItems && shipping).toFixed(2)}</p>
                 </div>
             </div>
         </div>
