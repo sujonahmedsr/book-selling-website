@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from '../assets/Img/rokomari_logo.webp'
-import { IoIosSearch } from "react-icons/io";
+// import { IoIosSearch } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import { IoCartOutline, IoCloseOutline } from "react-icons/io5";
 import { FaUsersRectangle } from "react-icons/fa6";
@@ -25,12 +25,12 @@ const Navbar = () => {
                         <img src={logo} className="min-w-32 h-12" alt={logo} />
                     </Link>
 
-                    <div className="lg:block hidden rounded-full w-1/3 bg-gradient-to-r from-red-500 to-blue-500 p-[1px]">
+                    {/* <div className="lg:block hidden rounded-full w-1/3 bg-gradient-to-r from-red-500 to-blue-500 p-[1px]">
                         <div className="items-center justify-between border rounded-full flex w-full bg-white p-1">
                             <input type="text" className="outline-none w-full px-4 border-r border-red-500" placeholder="Serch Books..." />
                             <button className="px-4 py-1 rounded-full"><IoIosSearch className="text-2xl text-red-500" /></button>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="lg:flex items-center hidden">
 
@@ -80,20 +80,38 @@ const Navbar = () => {
             {/* for tab or mobile screen  */}
             <div
                 className={
-                    ` fixed h-full w-screen lg:hidden bg-black/50  backdrop-blur-sm top-0 right-0  -translate-x-full  transition-all z-10 ${isSideMenuOpen && "translate-x-0"}`
+                    ` fixed h-full w-screen lg:hidden  backdrop-blur-sm top-0 right-0  -translate-x-full  transition-all z-10 ${isSideMenuOpen && "translate-x-0"}`
                 }
             >
-                <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 gap-8 z-50 w-56 flex  ">
+                <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-5 gap-4 z-50 w-56 flex">
                     <IoCloseOutline
                         onClick={() => setMenu(false)}
                         className="mt-0 mb-8 text-3xl cursor-pointer"
                     />
 
-                    {listOfNavigation.map((d, i) => (
-                        <a key={i} className="font-bold" onClick={() => setMenu(false)} href={d.link}>
-                            {d.title}
-                        </a>
-                    ))}
+                    {
+                        listOfNavigation.map((d, i) => (
+                            <a key={i} className="text-base hover:text-red-600 duration-200" onClick={() => setMenu(false)} href={d.link}>
+                                {d.title}
+                            </a>
+                        ))
+
+                    }
+                    <div className="flex flex-col space-y-2">
+
+                        {/* to do: when authentication complete then change it to user profile  */}
+                        <Link to={'/signIn'} className="rounded dark:text-gray-50 flex items-center gap-2 hover:bg-red-500 duration-300 hover:text-white px-4 py-2 text-gray-700 text-sm">
+                            <FaRegUser />
+                            Sing in
+                        </Link>
+
+                        <button type="button" className="rounded dark:text-gray-50 flex items-center gap-2 hover:bg-red-500 duration-300 hover:text-white px-4 py-2 text-gray-700 text-sm"> <FaUsersRectangle className="text-lg " /> Became a seller</button>
+
+                        <Link to={'/AllCards'} type="button" className="rounded bg-red-500 hover:bg-gray-700 px-4 py-2 text-white flex items-center space-x-2 duration-300">
+                            <IoCartOutline className="text-2xl" />
+                            <span className="font-bold">{carts?.length}</span>
+                        </Link>
+                    </div>
                 </section>
             </div>
         </>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const OfferPage = () => {
     // data format mm-dd-yy 
-    const targetDay = new Date('11-3-2024').getTime()
+    const targetDay = new Date('12-10-2024').getTime()
 
     const calculateTimeLeft = () => {
         const today = new Date().getTime()
@@ -14,7 +14,7 @@ const OfferPage = () => {
             const seconds = Math.floor(dif_day % (1000 * 60) / 1000)
             return { days, hours, minutes, seconds };
         } else {
-            return { timeUp: 'cv' }
+            return { timeUp: true }
         }
     }
 

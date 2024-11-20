@@ -7,10 +7,10 @@ const ProductLeftSideFunc = () => {
     return (
         <div className="flex flex-col gap-10">
             <ProductSort></ProductSort>
+            <EbookStock></EbookStock>
             <ShopByCategory></ShopByCategory>
             <ProductFilter></ProductFilter>
-            <EbookStock></EbookStock>
-            
+
         </div>
     );
 };

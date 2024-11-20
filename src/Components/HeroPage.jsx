@@ -6,9 +6,9 @@ import OfferPage from "./OfferPage";
 
 const HeroPage = () => {
     return (
-        <div className="pt-10">
+        <div className="lg:pt-10 pt-0">
             <HeroArea></HeroArea>
-            <div className="mt-24 container mx-auto bg-gray-50 border p-3 shadow-md">
+            <div className="mt-24 container mx-auto bg-gray-100 border p-3 shadow-md">
                 {/* todo : delete this form here  */}
                 <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-semibold text-gray-700">Choose Yours</h1>
@@ -18,10 +18,10 @@ const HeroPage = () => {
                 </div>
                 
                 <BookInHomePage></BookInHomePage>
-
             </div>
             <OfferPage></OfferPage>
             <BarMove></BarMove>
+            
         </div>
     );
 };

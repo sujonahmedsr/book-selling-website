@@ -14,11 +14,11 @@ const PriceHistory = () => {
             </div>
             <hr className="my-4" />
             {
-                selectedItems &&
+                selectedItems ?
                 <div className="flex items-center justify-between">
                     <p className="text-gray-700">Shipping</p>
                     <p className="text-gray-700">TK. {shipping}</p>
-                </div>
+                </div> : null
             }
             <hr className="my-4" />
 
@@ -26,7 +26,12 @@ const PriceHistory = () => {
             <div className="flex items-center justify-between">
                 <p className="text-lg font-semibold  text-gray-700">Total Payable Amount</p>
                 <div className="">
-                    <p className="mb-1 text-lg font-semibold  text-gray-700">TK. {(totalPrice + selectedItems && shipping).toFixed(2)}</p>
+                    {
+                        selectedItems ? <p className="mb-1 text-lg font-semibold  text-gray-700">TK. {(totalPrice + shipping).toFixed(2)}</p> 
+                        : 
+                        <p className="mb-1 text-lg font-semibold  text-gray-700">TK.0</p>
+                    }
+                    
                 </div>
             </div>
         </div>

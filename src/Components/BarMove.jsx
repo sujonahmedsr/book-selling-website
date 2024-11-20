@@ -5,7 +5,7 @@ import { AiOutlineSafety } from "react-icons/ai";
 import { GiReturnArrow } from "react-icons/gi";
 const BarMove = () => {
     return (
-        <div className="flex lg:flex-row flex-col items-center justify-evenly gap-10 mt-24 bg-red-500 text-white p-10">
+        <div className="flex lg:flex-row flex-col items-center justify-evenly gap-10 mt-10  p-10 bg-gray-100 text-gray-600">
             <div className="flex items-start gap-5">
                 <FaShippingFast className="text-5xl"/>
                 <div>
@@ -42,6 +42,7 @@ const BarMove = () => {
                 </div>
             </div>
         </div>
+        
     );
 };
 

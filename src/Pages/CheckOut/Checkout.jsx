@@ -19,7 +19,7 @@ const Checkout = () => {
                 </div>
                 <div className="mb-2 flex justify-between">
                     <p className="text-gray-700">Subtotal</p>
-                    <p className="text-gray-700">TK. {totalPrice.toFixed(2)}</p>
+                    <p className="text-gray-700">TK. {totalPrice?.toFixed(2)}</p>
                 </div>
                 <div className="flex justify-between">
                     <p className="text-gray-700">Shipping</p>
@@ -29,7 +29,7 @@ const Checkout = () => {
                 <div className="flex justify-between">
                     <p className="text-lg font-bold">Total</p>
                     <div className="">
-                        <p className="mb-1 text-lg font-bold">TK. {totalPrice.toFixed(2)}</p>
+                        <p className="mb-1 text-lg font-bold">TK. {totalPrice?.toFixed(2)}</p>
                     </div>
                 </div>
                 <Link to={'/Order_Place'}>
