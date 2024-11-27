@@ -3,17 +3,17 @@ export const listOfNavigation = [
         title: 'বই',
         link: '/AllBooks'
     },
+    // {
+    //     title: 'ইলেক্ট্রনিক্স',
+    //     link: '/Electronics'
+    // },
     {
-        title: 'ইলেক্ট্রনিক্স',
-        link: '/Electronics'
+        title: 'লেখক',
+        link: '/writers'
     },
     {
-        title: 'সুপার স্টোর',
-        link: '/superStore'
-    },
-    {
-        title: 'অফার সমূহ',
-        link: '/offers'
+        title: 'প্রকাশক',
+        link: '/publications'
     },
     {
         title: 'প্রাতিষ্ঠানিক অর্ডার',

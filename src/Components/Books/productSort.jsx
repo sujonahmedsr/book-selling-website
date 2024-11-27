@@ -1,33 +1,26 @@
 
-const ProductSort = () => {
+const ProductSort = ({handleFilterChange}) => {
     return (
-        <div className="border border-gray-300 bg-gray-50 shadow-md">
+        <div className="border border-gray-300 bg-gray-50 shadow-md text-base">
             <div className="flex items-center justify-between border-b border-gray-300 p-3">
-                <h1 className="text-xl font-bold text-gray-700">Sort</h1>
-                <p className="text-red-500 hover:text-red-600 duration-300">Reset Sort</p>
+                <h1 className="text-xl font-bold">সর্ট করুন</h1>
             </div>
             <div className="p-3 space-y-3">
                 <div className="flex items-center gap-2">
-                    <label>
-                        <input type="radio" />
-                        <span className="text-gray-700 ml-2">Best Seller</span>
+                    <label onChange={handleFilterChange}>
+                        <input type="radio" name="sortFiltering" value={'latest'}/>
+                        <span className="text-gray-700 ml-2">Latest Books</span>
                     </label>
                 </div>
                 <div className="flex items-center gap-2">
-                    <label>
-                        <input type="radio" />
-                        <span className="text-gray-700 ml-2">Ratings</span>
-                    </label>
-                </div>
-                <div className="flex items-center gap-2">
-                    <label>
-                        <input type="radio" />
+                    <label onChange={handleFilterChange}>
+                        <input type="radio" name="sortFiltering" value={'price_low_to_high'}/>
                         <span className="text-gray-700 ml-2">Price - Low to High</span>
                     </label>
                 </div>
                 <div className="flex items-center gap-2 cursor-pointer">
-                    <label>
-                        <input type="radio" />
+                    <label onChange={handleFilterChange}>
+                        <input type="radio" name="sortFiltering" value={'price_high_to_low'}/>
                         <span className="text-gray-700 ml-2">Price - High to Low</span>
                     </label>
                 </div>

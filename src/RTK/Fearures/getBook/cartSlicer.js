@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from 'react-toastify';
 
-const getItem =  localStorage.getItem('carts') !== null ? JSON.parse(localStorage.getItem('carts')) : []
-console.log(getItem);
+const getItem = localStorage.getItem('carts') !== null ? JSON.parse(localStorage.getItem('carts')) : []
+
+// console.log(typeof Number(getItem.carts[0].price),typeof Number(getItem.carts[0].sell_price));
 
 
 const initialState = {
@@ -20,8 +22,10 @@ const cartSlice = createSlice({
 
             if (!isExiting) {
                 state.carts.push({ ...action.payload, quantity: 1 })
+                toast("Add to cart")
             } else {
                 console.log('Alrady Add This');
+                toast("Alrady Add This")
             }
 
             state.selectedItems = setSelectedItems(state)
@@ -34,7 +38,7 @@ const cartSlice = createSlice({
                 if (cart.id === action.payload.id) {
                     if (action.payload.type === 'increment') {
                         cart.quantity += 1
-                    }else if (action.payload.type === 'decrement') {
+                    } else if (action.payload.type === 'decrement') {
                         if (cart.quantity > 1) {
                             cart.quantity -= 1
                         }
@@ -48,7 +52,7 @@ const cartSlice = createSlice({
         },
 
         removeCart: (state, action) => {
-            state.carts =  state.carts.filter(cart => cart.id !== action.payload)
+            state.carts = state.carts.filter(cart => cart.id !== action.payload)
             state.selectedItems = setSelectedItems(state)
             state.totalPrice = setTotalPrice(state)
             localStorage.setItem('carts', JSON.stringify(state))
@@ -65,7 +69,7 @@ export const setSelectedItems = state =>
 
 export const setTotalPrice = state =>
     state.carts.reduce((total, cart) => {
-        return Number(total + cart.quantity * cart.price)
+        return Number(total + cart.quantity * cart.sell_price)
     }, 0)
 
 export const { addToCart, updateCartQuantity, removeCart } = cartSlice.actions;

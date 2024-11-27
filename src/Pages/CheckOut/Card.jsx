@@ -3,7 +3,7 @@ import { removeCart, updateCartQuantity } from "../../RTK/Fearures/getBook/cartS
 
 const Card = ({ item }) => {
     const dispatch = useDispatch()
-    const { id, title, image, price, quantity } = item
+    const { id, title, img, sell_price, quantity } = item
     const deleteCartItem = () => {
         dispatch(removeCart(id))
     }
@@ -15,7 +15,7 @@ const Card = ({ item }) => {
         <div className="rounded-lg">
             <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md flex border gap-10">
                 <img
-                    src={image}
+                    src={img}
                     alt={title}
                     className="w-full h-40 rounded-lg sm:w-40"
                 />
@@ -25,7 +25,7 @@ const Card = ({ item }) => {
                         <h2 className="text-lg font-bold text-gray-900">
                             {title}
                         </h2>
-                        <p className="mt-1 text-sm text-gray-700">Price: TK. {(price * quantity).toFixed(2)}</p>
+                        <p className="mt-1 text-sm text-gray-700">Price: TK. {(sell_price * quantity).toFixed(2)}</p>
                     </div>
 
                     {/* add & minus quantity */}

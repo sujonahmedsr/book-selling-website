@@ -33,6 +33,31 @@ const Navbar = () => {
                     </div> */}
 
                     <div className="lg:flex items-center hidden">
+                        <button onClick={() => setMenu(true)} title="Open menu" type="button" className="p-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-800">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        <div className="flex items-center border border-gray-300 rounded-md overflow-hidden max-w-sm">
+                            <Link to={'/AllBooks'}>
+                                <button
+                                    className="text-gray-900 text-2xl border-none outline-none hover:text-white px-4 py-2 hover:bg-gray-700 duration-300">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M15.232 15.232l4.768 4.768m-6.414-3.182A7.5 7.5 0 1118 10.5a7.5 7.5 0 01-4.768 8.518z"
+                                        />
+                                    </svg>
+                                </button>
+                            </Link>
+                        </div>
 
                         {/* to do: when authentication complete then change it to user profile  */}
                         <Link to={'/signIn'} className="rounded dark:text-gray-50 flex items-center gap-2 mx-4 hover:bg-red-500 duration-300 hover:text-white px-4 py-2 text-gray-700">
@@ -50,7 +75,6 @@ const Navbar = () => {
 
 
                     {/* it's show only middle screen  */}
-
                     <button onClick={() => setMenu(true)} title="Open menu" type="button" className="p-4 lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-800">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -64,11 +88,11 @@ const Navbar = () => {
                 <div className="lg:block hidden">
                     {
                         show || hide &&
-                        <div className="flex items-center justify-center gap-10 font-thin text-gray-700 py-2 text-lg">
+                        <div className="flex items-center justify-center font-thin text-gray-700 text-lg">
                             {
                                 listOfNavigation.map((item, id) => <div key={id + 1}>
                                     <Link
-                                        className={`hover:text-red-500 ${location?.pathname === item?.link && 'font-medium text-red-500'} duration-300`} to={item.link}>{item.title}</Link>
+                                        className={`hover:text-white ${location?.pathname === item?.link && 'font-medium bg-red-500 text-white'} duration-300 px-4 py-2 hover:bg-red-500`} to={item.link}>{item.title}</Link> 
                                 </div>)
                             }
                         </div>
@@ -80,7 +104,7 @@ const Navbar = () => {
             {/* for tab or mobile screen  */}
             <div
                 className={
-                    ` fixed h-full w-screen lg:hidden  backdrop-blur-sm top-0 right-0  -translate-x-full  transition-all z-10 ${isSideMenuOpen && "translate-x-0"}`
+                    ` fixed h-full w-screen  backdrop-blur-sm top-0 right-0  -translate-x-full  transition-all z-10 ${isSideMenuOpen && "translate-x-0"}`
                 }
             >
                 <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-5 gap-4 z-50 w-56 flex">
@@ -95,19 +119,37 @@ const Navbar = () => {
                                 {d.title}
                             </a>
                         ))
-
                     }
-                    <div className="flex flex-col space-y-2">
-
+                    <div onClick={() => setMenu(false)} className="flex flex-col space-y-2">
+                        <div className="flex items-center border border-gray-300 rounded-md overflow-hidden max-w-sm">
+                            <Link to={'/AllBooks'}>
+                                <button
+                                    className="text-gray-900 text-2xl border-none outline-none hover:text-white px-4 py-2 hover:bg-gray-700 duration-300">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M15.232 15.232l4.768 4.768m-6.414-3.182A7.5 7.5 0 1118 10.5a7.5 7.5 0 01-4.768 8.518z"
+                                        />
+                                    </svg>
+                                </button>
+                            </Link>
+                        </div>
                         {/* to do: when authentication complete then change it to user profile  */}
-                        <Link to={'/signIn'} className="rounded dark:text-gray-50 flex items-center gap-2 hover:bg-red-500 duration-300 hover:text-white px-4 py-2 text-gray-700 text-sm">
+                        <Link to={'/signIn'} onClick={() => setMenu(false)} className="rounded dark:text-gray-50 flex items-center gap-2 hover:bg-red-500 duration-300 hover:text-white px-4 py-2 text-gray-700 text-sm">
                             <FaRegUser />
                             Sing in
                         </Link>
 
-                        <button type="button" className="rounded dark:text-gray-50 flex items-center gap-2 hover:bg-red-500 duration-300 hover:text-white px-4 py-2 text-gray-700 text-sm"> <FaUsersRectangle className="text-lg " /> Became a seller</button>
+                        <button type="button" onClick={() => setMenu(false)} className="rounded dark:text-gray-50 flex items-center gap-2 hover:bg-red-500 duration-300 hover:text-white px-4 py-2 text-gray-700 text-sm"> <FaUsersRectangle className="text-lg " /> Became a seller</button>
 
-                        <Link to={'/AllCards'} type="button" className="rounded bg-red-500 hover:bg-gray-700 px-4 py-2 text-white flex items-center space-x-2 duration-300">
+                        <Link to={'/AllCards'} onClick={() => setMenu(false)} type="button" className="rounded bg-red-500 hover:bg-gray-700 px-4 py-2 text-white flex items-center space-x-2 duration-300">
                             <IoCartOutline className="text-2xl" />
                             <span className="font-bold">{carts?.length}</span>
                         </Link>

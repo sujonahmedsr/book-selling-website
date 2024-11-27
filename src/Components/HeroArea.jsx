@@ -7,7 +7,53 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination } from 'swiper/modules';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 const HeroArea = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch data from an API
+    axios.get('https://kichukkhon.arnobghosh.me/api/sliders') // Example API URL
+      .then((response) => {
+        setData(response.data.data); // Update state with the response data
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []); // Empty dependency array ensures the effect runs only once
+
+  // Conditional rendering
+  if (loading) return <div role="status" className="max-w-full border-gray-100 rounded shadow animate-pulse">
+    <div className="flex items-center justify-center h-64 bg-gray-100 rounded">
+
+    </div>
+    <div className="flex items-center">
+
+      <div>
+        <div className="h-2.5 bg-gray-100 rounded-full w-32"></div>
+        <div className="w-48 h-2 bg-gray-100 rounded-full"></div>
+      </div>
+    </div>
+  </div>;
+  if (error) return <div role="status" className="max-w-full border-gray-100 rounded shadow animate-pulse">
+    <div className="flex items-center justify-center h-64 bg-gray-100 rounded">
+      <p className='text-red-600'>Error: {error}</p>
+    </div>
+    <div className="flex items-center">
+
+      <div>
+        <div className="h-2.5 bg-gray-100 rounded-full w-32"></div>
+        <div className="w-48 h-2 bg-gray-100 rounded-full"></div>
+      </div>
+    </div>
+  </div>;
+
   return (
     <>
       <Swiper
@@ -23,22 +69,12 @@ const HeroArea = () => {
         }}
         modules={[Autoplay, Pagination]}
         className="mySwiper">
-        
-        <SwiperSlide>
-          <img src="https://img.cf.rokomari.com/banner/DESKTOP0d802618-03d6-423b-9d06-6fd14fe0cc4e.webp" alt="dummy imgage" className='min-h-64 w-full h-full bg-cover'/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://img.cf.rokomari.com/banner/DESKTOPfd636b27-9001-440e-908a-d4ac25a7a78e.webp" alt="dummy imgage" className='min-h-64 w-full h-full bg-cover'/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://img.cf.rokomari.com/banner/DESKTOPc7c1f355-1b4c-4379-95dd-52e5e44dd3c9.webp" alt="dummy imgage" className='min-h-64 w-full h-full bg-cover'/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://img.cf.rokomari.com/banner/DESKTOPaa4fb989-02a2-433b-8020-d3455098a5ab.webp" alt="dummy imgage" className='min-h-64 w-full h-full bg-cover'/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://img.cf.rokomari.com/banner/DESKTOP9b3d3774-3694-4cf0-9643-d02948db186d.webp" alt="dummy imgage" className='min-h-64 w-full h-full bg-cover'/>
-        </SwiperSlide>
+
+        {
+          data?.map(d => <SwiperSlide key={d.id}>
+            <img src={d.img} alt="dummy imgage" className='min-h-64 w-full h-full bg-cover' />
+          </SwiperSlide>)
+        }
       </Swiper>
     </>
   );

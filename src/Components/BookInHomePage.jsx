@@ -15,16 +15,25 @@ const BookInHomePage = () => {
     let content = null
 
     if (isLoading && !isError) {
-        content = <div className="text-lg font-semibold text-gray-700">Loading...</div>
+        content = <div role="status" className="max-w-full border-gray-100 rounded shadow animate-pulse grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-5">
+        <div className=" h-64 bg-gray-200 rounded">
+        </div>
+        <div className=" h-64 bg-gray-200 rounded">
+        </div>
+        <div className=" h-64 bg-gray-200 rounded">
+        </div>
+        <div className=" h-64 bg-gray-200 rounded">
+        </div>
+      </div>
     }
     if (!isLoading && isError) {
         content = <div className="text-red-600">{error?.status}</div>
     }
-    if (!isLoading && !isError && allBooks?.length === 0) {
+    if (!isLoading && !isError && allBooks.data?.length === 0) {
         content = <div className="text-lg font-semibold text-gray-700">No Products Found...</div>
     }
-    if (!isLoading && !isError && allBooks?.length > 0) {
-        content = allBooks.slice(0, 8).map(book =>
+    if (!isLoading && !isError && allBooks.data?.length > 0) {
+        content = allBooks.data.slice(0, 8).map(book =>
             <SwiperSlide key={book.id}>
                 <SingleBooks book={book}></SingleBooks>
             </SwiperSlide>
@@ -48,9 +57,10 @@ const BookInHomePage = () => {
                         spaceBetween: 50,
                     },
                 }}
+                loop={true}
                 navigation={true}
                 modules={[Navigation]}
-                className="mySwiper">
+                className="mySwiper mt-10">
                 {content}
             </Swiper>
         </div>

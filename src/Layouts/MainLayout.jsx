@@ -2,6 +2,8 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const MainLayout = () => {
     const { pathname } = useLocation()
@@ -15,6 +17,18 @@ const MainLayout = () => {
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>
+            <ToastContainer position="bottom-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition:Bounce
+            />
         </div>
     );
 };

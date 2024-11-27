@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import offerImg from '../assets/Img/dfg.webp'
+import { Link } from "react-router-dom";
 
 const OfferPage = () => {
     // data format mm-dd-yy 
@@ -59,7 +61,9 @@ const OfferPage = () => {
                 </div>
 
                 <div>
-                    <img src="https://img.cf.rokomari.com/banner/DESKTOP9b3d3774-3694-4cf0-9643-d02948db186d.webp" alt="asdf" className="h-72"/>
+                    <Link to={'/AllBooks'}>
+                    <img src={offerImg} alt="offerImg" className="h-72"/>
+                    </Link>
                 </div>
             </div>
 

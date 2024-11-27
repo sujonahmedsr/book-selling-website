@@ -3,10 +3,10 @@ import ShopByCategory from "./ShopByCategory";
 import ProductFilter from "./ProductFilter";
 import EbookStock from "./EbookStock";
 
-const ProductLeftSideFunc = () => {
+const ProductLeftSideFunc = (handleFilterChange) => {
     return (
         <div className="flex flex-col gap-10">
-            <ProductSort></ProductSort>
+            <ProductSort handleFilterChange={handleFilterChange}></ProductSort>
             <EbookStock></EbookStock>
             <ShopByCategory></ShopByCategory>
             <ProductFilter></ProductFilter>

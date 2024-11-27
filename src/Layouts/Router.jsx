@@ -6,9 +6,11 @@ import SignUp from "../Pages/SignUp";
 import AllCards from "../Pages/CheckOut/AllCards";
 import HeroPage from "../Components/HeroPage";
 import OrderDetails from "../Pages/OrderPage/OrderDetails";
-import BooksPage from "../Components/Books/BooksPage";
 import Electronics from "../Components/Electronics/Electronics";
 import BooksDetails from "../Components/Books/BooksDetails";
+import Writers from "../Components/writter/Writers";
+import Publications from "../Components/publication/Publications";
+import AllBooks from "../Components/Books/AllBooks";
 
 const router = createBrowserRouter([
     {
@@ -22,15 +24,23 @@ const router = createBrowserRouter([
             },
             {
                 path: '/AllBooks',
-                element: <BooksPage></BooksPage>
+                element: <AllBooks></AllBooks>
             },
             {
-                path: '/booksDetails/:id',
+                path: '/booksDetails/:slug',
                 element: <BooksDetails></BooksDetails>
             },
             {
                 path: '/Electronics',
                 element: <Electronics></Electronics>
+            },
+            {
+                path: '/writers',
+                element: <Writers></Writers>
+            },
+            {
+                path: '/publications',
+                element: <Publications></Publications>
             },
             {
                 path: '/AllCards',
