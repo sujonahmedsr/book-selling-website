@@ -8,11 +8,13 @@ export const getBooksApi = createApi({
     }),
     endpoints: (builder) => ({
         booksProductsApi: builder.query({
-            query: ({ sortFiltering = "", publication = "", authors = "", subject = ""} = {}) => {
+            query: ({ sortFiltering = "", publication = "", authors = "", subject = "", limit, category = ""} = {}) => {
                 let url = `/products?sort_by=${sortFiltering}`
                 if (publication) url += `&publication=${publication}`
                 if (authors) url += `&author=${authors}`
                 if (subject) url += `&subject=${subject}`
+                if (limit) url += `&limit=${limit}`
+                if (category) url += `&categories=${category}`
                 return url
             }
         }),

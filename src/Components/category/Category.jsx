@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useGetPublicationsQuery } from "../../RTK/Fearures/getBook/getBookApi";
+import { useGetCategoryQuery } from "../../RTK/Fearures/getBook/getBookApi";
 import { Link } from "react-router-dom";
 
-const Publications = () => {
-    const [publicationSearch, setPublicationSearch] = useState('')
-    const { data: allPublications, isLoading, isError, error } = useGetPublicationsQuery()
+const Category = () => {
+    const [writerSearch, setWriterSearch] = useState('')
+    const { data: allSubjects, isLoading, isError, error } = useGetCategoryQuery()
 
     let content;
 
@@ -12,30 +12,31 @@ const Publications = () => {
 
     if (!isLoading && isError) content = <p className="text-red-600 h-[80vh]">Error: {error}</p>;
 
-    if (!isLoading && isError && !allPublications?.data?.length === 0) content = <div className="text-red-600 h-[80vh]">No Data Found...</div>;
+    if (!isLoading && isError && !allSubjects?.data?.length === 0) content = <div className="text-red-600 h-[80vh]">No Data Found...</div>;
 
-    if (!isLoading && !isError && allPublications?.data?.length > 0) {
-        content = allPublications?.data
+    if (!isLoading && !isError && allSubjects?.data?.length > 0) {
+        content = allSubjects?.data
             .filter((item => {
-                return publicationSearch.toLowerCase() === '' ? item : item.name.toLowerCase().includes(publicationSearch)
-            })).map(d => <Link to={`/publications/${d.slug}`} key={d.id}>
-                <div key={d.id} className="border-l-2 border-red-600 py-2 px-4">{d.name}</div>
+                return writerSearch.toLowerCase() === '' ? item : item.name.toLowerCase().includes(writerSearch)
+            })).map(d => <Link to={`/categoryBooks/${d.slug}`} key={d.id}>
+                <div className="border-l-2 border-red-600 py-2 px-4">{d.name}</div>
             </Link>
-            
             )
+
     }
 
     return (
         <div className="container mx-auto p-5 space-y-5">
             <div className="flex items-center justify-between border border-gray-200 shadow p-5">
-                <h1 className="text-lg font-semibold text-red-600">জনপ্রিয় প্রকাশক</h1>
+                <h1 className="text-lg font-semibold text-red-600">ক্যাটাগরি সমূহ
+                </h1>
             </div>
             <div className="flex items-center border border-gray-300 rounded-md overflow-hidden max-w-sm">
                 <input
+                    onChange={(e) => setWriterSearch(e.target.value)}
                     type="text"
-                    value={publicationSearch}
-                    onChange={(e) => setPublicationSearch(e.target.value)}
-                    placeholder="প্রকাশক অনুসন্ধান করুন"
+                    value={writerSearch}
+                    placeholder="ক্যাটাগরি অনুসন্ধান করুন"
                     className="flex-1 px-4 border-none outline-none text-gray-700 placeholder-gray-500"
                 />
                 <button
@@ -63,4 +64,4 @@ const Publications = () => {
     );
 };
 
-export default Publications;
+export default Category;

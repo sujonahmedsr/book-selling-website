@@ -16,15 +16,11 @@ export const listOfNavigation = [
         link: '/publications'
     },
     {
-        title: 'প্রাতিষ্ঠানিক অর্ডার',
-        link: '/organization'
+        title: 'বিষয় সমূহ',
+        link: '/subjects'
     },
     {
-        title: 'ঘরে বসে আয় করুন',
-        link: '/giftFinder'
+        title: 'ক্যাটাগরি  সমূহ',
+        link: '/category'
     },
-    {
-        title: 'রকমারি কুইজ',
-        link: '/quiz'
-    }
 ]

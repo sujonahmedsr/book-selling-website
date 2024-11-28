@@ -1,4 +1,4 @@
-import { IoIosSearch } from "react-icons/io";
+// import { IoIosSearch } from "react-icons/io";
 import { useBooksProductsApiQuery } from "../../RTK/Fearures/getBook/getBookApi";
 import SingleBooks from "./SingleBooks";
 import { useState } from "react";
@@ -67,11 +67,36 @@ const AllBooks = () => {
             </div>
             <div className="lg:col-span-9 col-span-1">
                 <>
-                    <div className="block  rounded-full w-2/3  p-[1px] mb-5">
+                    {/* <div className="block  rounded-full w-2/3  p-[1px] mb-5">
                         <div className="items-center justify-between border border-gray-300 rounded-full flex w-full bg-white p-1">
                             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} className="outline-none w-full px-4 border-r border-red-500" placeholder="Serch Books..." />
                             <button className="px-4 py-1 rounded-full"><IoIosSearch className="text-2xl text-red-500" /></button>
                         </div>
+                    </div> */}
+                    <div className="flex items-center border border-gray-300 rounded-md overflow-hidden mb-2 md:max-w-xl">
+                        <input
+                            type="text"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            placeholder="বই অনুসন্ধান করুন"
+                            className="flex-1 px-4 border-none outline-none text-gray-700 placeholder-gray-500"
+                        />
+                        <button
+                            className="bg-red-500 hover:bg-red-600 border-none outline-none text-white px-4 py-2">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M15.232 15.232l4.768 4.768m-6.414-3.182A7.5 7.5 0 1118 10.5a7.5 7.5 0 01-4.768 8.518z"
+                                />
+                            </svg>
+                        </button>
                     </div>
                     <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
                         {content}

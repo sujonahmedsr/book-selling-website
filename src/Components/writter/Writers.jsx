@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useGetAutorsQuery } from "../../RTK/Fearures/getBook/getBookApi";
+import { Link } from "react-router-dom";
 
 const Writers = () => {
     const [writerSearch, setWriterSearch] = useState('')
@@ -17,7 +18,9 @@ const Writers = () => {
         content = allAuthors?.data
             .filter((item => {
                 return writerSearch.toLowerCase() === '' ? item : item.name.toLowerCase().includes(writerSearch)
-            })).map(d => <div key={d.id} className="border-l-2 border-red-600 py-2 px-4">{d.name}</div>
+            })).map(d => <Link to={`/writerBooks/${d.slug}`} key={d.id}>
+                <div className="border-l-2 border-red-600 py-2 px-4">{d.name}</div>
+            </Link>
             )
 
     }

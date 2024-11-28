@@ -10,7 +10,7 @@ import { useGetAutorsQuery } from "../RTK/Fearures/getBook/getBookApi";
 
 const Writer = () => {
     const { data: allAuthors, isLoading, isError, error } = useGetAutorsQuery()
-    
+
     let content;
 
     if (isLoading && !isError) content = <div role="status" className="container mx-auto border-gray-100 rounded shadow animate-pulse grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-5">
@@ -31,10 +31,14 @@ const Writer = () => {
     if (!isLoading && isError && !allAuthors?.data?.length === 0) content = <div className="text-red-600">No Data Found...</div>;
 
     if (!isLoading && !isError && allAuthors?.data?.length > 0) {
-        content = allAuthors?.data?.map(d => <SwiperSlide key={d.id} className="flex items-center flex-col gap-4 text-center">
-            <img src={d.img} alt="dummy imgage" className='w-20 mx-auto h-20 rounded-full ' />
-            <h1 className="pt-5">{d.name}</h1>
-        </SwiperSlide>
+        content = allAuthors?.data?.map(d =>
+            <SwiperSlide key={d.id} className="flex items-center flex-col gap-4 text-center">
+                <Link to={`/writerBooks/${d.slug}`} >
+                    <img src={d.img} alt="dummy imgage" className='w-20 mx-auto h-20 rounded-full ' />
+                    <h1 className="pt-5">{d.name}</h1>
+                </Link>
+            </SwiperSlide>
+
         )
     }
 

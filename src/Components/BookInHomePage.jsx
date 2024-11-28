@@ -11,7 +11,10 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
 const BookInHomePage = () => {
-    const { data: allBooks, isLoading, isError, error } = useBooksProductsApiQuery()
+    const limit = 7
+    const { data: allBooks, isLoading, isError, error } = useBooksProductsApiQuery({limit})
+
+    
     let content = null
 
     if (isLoading && !isError) {
@@ -29,16 +32,17 @@ const BookInHomePage = () => {
     if (!isLoading && isError) {
         content = <div className="text-red-600">{error?.status}</div>
     }
-    if (!isLoading && !isError && allBooks.data?.length === 0) {
+    if (!isLoading && !isError && allBooks?.data?.length === 0) {
         content = <div className="text-lg font-semibold text-gray-700">No Products Found...</div>
     }
-    if (!isLoading && !isError && allBooks.data?.length > 0) {
-        content = allBooks.data.slice(0, 8).map(book =>
+    if (!isLoading && !isError && allBooks?.data?.length > 0) {
+        content = allBooks?.data?.map(book =>
             <SwiperSlide key={book.id}>
                 <SingleBooks book={book}></SingleBooks>
             </SwiperSlide>
         )
     }
+    
     return (
         <div className="p-3">
             <Swiper

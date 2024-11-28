@@ -10,7 +10,7 @@ import { useGetPublicationsQuery } from "../RTK/Fearures/getBook/getBookApi";
 
 const Publication = () => {
     const { data: allPublications, isLoading, isError, error } = useGetPublicationsQuery()
-    
+
     let content;
 
     if (isLoading && !isError) content = <div role="status" className="container mx-auto border-gray-100 rounded shadow animate-pulse grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-5">
@@ -32,8 +32,10 @@ const Publication = () => {
 
     if (!isLoading && !isError && allPublications?.data?.length > 0) {
         content = allPublications?.data?.map(d => <SwiperSlide key={d.id} className="flex items-center flex-col gap-4 text-center">
-            <img src={d.img} alt="dummy imgage" className='w-20 mx-auto h-20 rounded-full ' />
-            <h1 className="pt-5">{d.name}</h1>
+            <Link to={`/publications/${d.slug}`}>
+                <img src={d.img} alt="dummy imgage" className='w-20 mx-auto h-20 rounded-full ' />
+                <h1 className="pt-5">{d.name}</h1>
+            </Link>
         </SwiperSlide>
         )
     }

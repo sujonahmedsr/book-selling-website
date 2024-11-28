@@ -5,6 +5,7 @@ import HeroArea from "./HeroArea";
 import OfferPage from "./OfferPage";
 import Writer from "./writer";
 import Publication from "./Publication";
+import ImgWithTitle from "./imgWithTitle";
 
 const HeroPage = () => {
     return (
@@ -22,6 +23,7 @@ const HeroPage = () => {
 
                 <BookInHomePage></BookInHomePage>
             </div>
+            <ImgWithTitle></ImgWithTitle>
             <OfferPage></OfferPage>
             <Writer></Writer>
             <Publication></Publication>

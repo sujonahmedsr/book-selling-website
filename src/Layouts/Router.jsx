@@ -11,6 +11,12 @@ import BooksDetails from "../Components/Books/BooksDetails";
 import Writers from "../Components/writter/Writers";
 import Publications from "../Components/publication/Publications";
 import AllBooks from "../Components/Books/AllBooks";
+import WriterBooks from "../Components/writter/WriterBooks";
+import PublicationBooks from "../Components/publication/PublicationBooks";
+import Subjects from "../Components/subjects/Subjects";
+import SubjectBooks from "../Components/subjects/SubjectBooks";
+import Category from "../Components/category/Category";
+import CategoryBooks from "../Components/category/CategoryBooks";
 
 const router = createBrowserRouter([
     {
@@ -39,8 +45,32 @@ const router = createBrowserRouter([
                 element: <Writers></Writers>
             },
             {
+                path: '/writerBooks/:slug',
+                element: <WriterBooks></WriterBooks>
+            },
+            {
                 path: '/publications',
                 element: <Publications></Publications>
+            },
+            {
+                path: '/publications/:slug',
+                element: <PublicationBooks></PublicationBooks>
+            },
+            {
+                path: '/subjects',
+                element: <Subjects></Subjects>
+            },
+            {
+                path: '/subjectBooks/:slug',
+                element: <SubjectBooks></SubjectBooks>
+            },
+            {
+                path: '/category',
+                element: <Category></Category>
+            },
+            {
+                path: '/categoryBooks/:slug',
+                element: <CategoryBooks></CategoryBooks>
             },
             {
                 path: '/AllCards',
