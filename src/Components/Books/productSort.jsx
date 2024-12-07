@@ -1,8 +1,8 @@
 
 const ProductSort = ({handleFilterChange}) => {
     return (
-        <div className="border border-gray-300 bg-gray-50 shadow-md text-base">
-            <div className="flex items-center justify-between border-b border-gray-300 p-3">
+        <div className=" bg-gray-50 shadow-md text-base">
+            <div className="flex items-center justify-between border border-gray-300 p-3">
                 <h1 className="text-xl font-bold">সর্ট করুন</h1>
             </div>
             <div className="p-3 space-y-3">
