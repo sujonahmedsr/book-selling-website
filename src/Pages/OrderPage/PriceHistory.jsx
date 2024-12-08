@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 const PriceHistory = () => {
     const { selectedItems, totalPrice } = useSelector(state => state.cart)
-    const shipping = 53;
+    // const shipping = 53;
     return (
         <div className="border border-gray-300 p-5 rounded space-y-3 bg-white sticky top-24">
             <h1 className="text-xl font-semibold text-gray-700">Checkout Summary</h1>
@@ -13,13 +13,13 @@ const PriceHistory = () => {
                 <p className="text-gray-700">TK. {totalPrice.toFixed(2)}</p>
             </div>
             <hr className="my-4" />
-            {
+            {/* {
                 selectedItems ?
                 <div className="flex items-center justify-between">
                     <p className="text-gray-700">Shipping</p>
                     <p className="text-gray-700">TK. {shipping}</p>
                 </div> : null
-            }
+            } */}
             <hr className="my-4" />
 
             <hr className="my-4" />
@@ -27,7 +27,7 @@ const PriceHistory = () => {
                 <p className="text-lg font-semibold  text-gray-700">Total Payable Amount</p>
                 <div className="">
                     {
-                        selectedItems ? <p className="mb-1 text-lg font-semibold  text-gray-700">TK. {(totalPrice + shipping).toFixed(2)}</p> 
+                        selectedItems ? <p className="mb-1 text-lg font-semibold  text-gray-700">TK. {(totalPrice).toFixed(2)}</p> 
                         : 
                         <p className="mb-1 text-lg font-semibold  text-gray-700">TK.0</p>
                     }

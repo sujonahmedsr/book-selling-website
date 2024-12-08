@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-const ReviewBooks = () => {
+const ReviewBooks = ({id}) => {
+    console.log(id);
+    
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState("");
     const [name, setName] = useState("");
@@ -17,6 +19,7 @@ const ReviewBooks = () => {
             review,
             name,
             email,
+            product_id: id
         };
         console.log("Form Data:", formData);
         alert("Review Submitted!");

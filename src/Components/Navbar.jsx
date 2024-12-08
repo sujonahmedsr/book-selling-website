@@ -60,10 +60,10 @@ const Navbar = () => {
                         </div>
 
                         {/* to do: when authentication complete then change it to user profile  */}
-                        <Link to={'/signIn'} className="rounded dark:text-gray-50 flex items-center gap-2 mx-4 hover:bg-red-500 duration-300 hover:text-white px-4 py-2 text-gray-700">
+                        {/* <Link to={'/signIn'} className="rounded dark:text-gray-50 flex items-center gap-2 mx-4 hover:bg-red-500 duration-300 hover:text-white px-4 py-2 text-gray-700">
                             <FaRegUser className="text-xl" />
                             Sing in
-                        </Link>
+                        </Link> */}
 
                         <button type="button" className="rounded flex items-center gap-2 mx-4 hover:text-red-500 duration-300 text-gray-700"> <FaUsersRectangle className="text-xl flex" /> Became a seller</button>
 
