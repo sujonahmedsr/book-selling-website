@@ -1,20 +1,23 @@
+import axios from 'axios';
 import { useState } from 'react';
-// import cod from '../../assets/icons/cod.webp'
 import { useSelector } from 'react-redux';
-// import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 const CustomarShippingDetails = () => {
+
+    const navigate = useNavigate()
+    const [orderSuccess, serOrderSuccess] = useState(null)
     const { carts } = useSelector(state => state.cart)
     const [formData, setFormData] = useState({
         customerName: "",
         phoneNumber: "",
         email: "",
-        // area: "In Dhaka",
         deliveryAddress: "",
         deliveryAreaId: 1,
-        
     });
 
-    const products =  carts.map((product) => {
+    const products = carts.map((product) => {
         const variant = product.variant_product[0];
         return {
             product_id: product.id,
@@ -22,8 +25,6 @@ const CustomarShippingDetails = () => {
             quantity: product.quantity,
         };
     })
-
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -35,43 +36,39 @@ const CustomarShippingDetails = () => {
         products
     }
 
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            const response = await axios.post('https://kichukkhon.arnobghosh.me/api/order', orderData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
 
-        console.log(orderData);
-        
-        // try {
-        //     console.log("Form Data:", orderData); // Debugging log
-    
-        //     const response = await axios.post('https://kichukkhon.arnobghosh.me/api/order', orderData, {
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         }
-        //     });
-        //     console.log("Form submitted:", orderData);
-    
-        //     console.log('Success:', response.data); // Handle success
-        // } catch (error) {
-        //     if (error.response) {
-        //         console.error('Server Error:', error.response.data);
-        //         console.error('Status Code:', error.response.status);
-        //     } else if (error.request) {
-        //         console.error('No Response Received:', error.request);
-        //     } else {
-        //         console.error('Error Setting Up Request:', error.message);
-        //     }
-        // }
-        
+            serOrderSuccess(response.data);
 
-        // axios.post('https://kichukkhon.arnobghosh.me/api/order', orderData)
-        //     .then(response => {
-        //         console.log('Response:', response.data); // Handle successful response
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error); // Handle error
-        //     });
+            if (response?.data?.status === 'success') {
+                await localStorage.clear();
+                toast("Order placed successfully")
+            }
 
-        // Add your form submission logic here
+            await delay(2000)
+
+            navigate('/OrderSuccessMessage')
+            window.location.reload()
+
+        } catch (error) {
+            if (error.response) {
+                console.error('Server Error:', error.response.data);
+                console.error('Status Code:', error.response.status);
+            } else if (error.request) {
+                console.error('No Response Received:', error.request);
+            } else {
+                console.error('Error Setting Up Request:', error.message);
+            }
+        }
     };
 
     return (
@@ -197,7 +194,10 @@ const CustomarShippingDetails = () => {
                         type="submit"
                         className="block w-full rounded-md bg-red-500 px-3.5 py-2.5 text-center text-lg font-semibold text-white hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 duration-300"
                     >
-                        Confirm Order
+                        {
+                            orderSuccess?.status === "success" ? "Order placed successfully" : "Confirm Order"
+                        }
+
                     </button>
                 </div>
             </form>

@@ -17,6 +17,7 @@ import Subjects from "../Components/subjects/Subjects";
 import SubjectBooks from "../Components/subjects/SubjectBooks";
 import Category from "../Components/category/Category";
 import CategoryBooks from "../Components/category/CategoryBooks";
+import SuccessOrderMessage from "../Pages/OrderPage/SuccessOrderMessage";
 
 const router = createBrowserRouter([
     {
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
             {
                 path: '/Order_Place',
                 element: <OrderDetails></OrderDetails>
+            },
+            {
+                path: '/OrderSuccessMessage',
+                element: <SuccessOrderMessage></SuccessOrderMessage>
             },
         ]
     },

@@ -1,12 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cod from '../../assets/icons/rok-icon-cod.svg'
 import moneyback from '../../assets/icons/rok-icon-moneyback.svg'
 import product from '../../assets/icons/rok-icon-original-product.svg'
 import replacement from '../../assets/icons/rok-icon-replacement.svg'
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 const Checkout = () => {
+    const navigate = useNavigate()
     const { selectedItems, totalPrice } = useSelector(state => state.cart)
+    useEffect(()=>{
+        if(!selectedItems > 0){
+            navigate('/')
+        }
+    },[selectedItems, navigate])
     return (
         <div>
             <div className="mt-6 rounded-lg border bg-white p-6 shadow-md md:mt-0 space-y-3">

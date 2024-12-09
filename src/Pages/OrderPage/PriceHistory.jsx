@@ -1,8 +1,17 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const PriceHistory = () => {
+    const navigate = useNavigate()
     const { selectedItems, totalPrice } = useSelector(state => state.cart)
     // const shipping = 53;
+
+    useEffect(()=>{
+        if(!selectedItems > 0){
+            navigate('/')
+        }
+    },[selectedItems, navigate])
     return (
         <div className="border border-gray-300 p-5 rounded space-y-3 bg-white sticky top-24">
             <h1 className="text-xl font-semibold text-gray-700">Checkout Summary</h1>

@@ -8,6 +8,8 @@ import { useState } from "react";
 import { listOfNavigation } from "./Shared/navbarlist";
 import useCustomNavbarSH from "../hooks/customNavbarSH";
 import { useSelector } from "react-redux";
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
     const [isSideMenuOpen, setMenu] = useState(false);
@@ -67,10 +69,21 @@ const Navbar = () => {
 
                         <button type="button" className="rounded flex items-center gap-2 mx-4 hover:text-red-500 duration-300 text-gray-700"> <FaUsersRectangle className="text-xl flex" /> Became a seller</button>
 
-                        <Link to={'/AllCards'} type="button" className="rounded bg-red-500 hover:bg-gray-700 px-4 py-2 text-white mx-4 flex items-center space-x-2 duration-300">
-                            <IoCartOutline className="text-2xl" />
-                            <span className="font-bold">{carts?.length}</span>
-                        </Link>
+
+                        {
+                            carts?.length > 0 ? <Link to={'/AllCards'} type="button" className="rounded bg-red-500 hover:bg-gray-700 px-4 py-2 text-white mx-4 flex items-center space-x-2 duration-300">
+                                <IoCartOutline className="text-2xl" />
+                                <span className="font-bold">{carts?.length}</span>
+                            </Link>
+                                :
+                                <>
+                                    <button data-tooltip-id="my-tooltip" data-tooltip-content="No carts Add." type="button" className="rounded bg-red-500 hover:bg-gray-700 px-4 py-2 text-white mx-4 flex items-center space-x-2 duration-300">
+                                        <IoCartOutline className="text-2xl" />
+                                        <span className="font-bold">{carts?.length}</span>
+                                    </button>
+                                    <Tooltip id="my-tooltip" />
+                                </>
+                        }
                     </div>
 
 
@@ -92,7 +105,7 @@ const Navbar = () => {
                             {
                                 listOfNavigation.map((item, id) => <div key={id + 1}>
                                     <Link
-                                        className={`hover:text-white ${location?.pathname === item?.link && 'font-medium bg-red-500 text-white'} duration-300 px-4 py-2 hover:bg-red-500`} to={item.link}>{item.title}</Link> 
+                                        className={`hover:text-white ${location?.pathname === item?.link && 'font-medium bg-red-500 text-white'} duration-300 px-4 py-2 hover:bg-red-500`} to={item.link}>{item.title}</Link>
                                 </div>)
                             }
                         </div>
