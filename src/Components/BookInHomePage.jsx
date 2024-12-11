@@ -48,7 +48,7 @@ const BookInHomePage = () => {
             <Swiper
                 spaceBetween={30}
                 breakpoints={{
-                    640: {
+                    480: {
                         slidesPerView: 2,
                         spaceBetween: 20,
                     },

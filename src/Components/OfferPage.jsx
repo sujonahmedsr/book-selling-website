@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const OfferPage = () => {
     // data format mm-dd-yy 
-    const targetDay = new Date('12-10-2024').getTime()
+    const targetDay = new Date('12-23-2024').getTime()
 
     const calculateTimeLeft = () => {
         const today = new Date().getTime()

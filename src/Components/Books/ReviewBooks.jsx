@@ -1,34 +1,57 @@
+import axios from "axios";
 import { useState } from "react";
+import { FaRegEdit } from "react-icons/fa";
+import { toast } from "react-toastify";
+import AllReview from "./AllReview";
 
-const ReviewBooks = ({id}) => {
-    console.log(id);
-    
+const ReviewBooks = ({ bookDetails }) => {
+    const { id, review: bookReview } = bookDetails
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState("");
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
+    const [show, setShow] = useState(false)
+
 
     const handleRatingClick = (star) => {
         setRating(star);
     };
 
-    const handleSubmit = (e) => {
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = {
+            product_id: id,
+            customer_id: '',
             rating,
             review,
-            name,
-            email,
-            product_id: id
+            img: '',
         };
-        console.log("Form Data:", formData);
-        alert("Review Submitted!");
+
+        try {
+            const response = await axios.post('https://kichukkhon.arnobghosh.me/api/product-review', formData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response?.data?.status === "success") {
+                await delay(1000)
+                toast("Review Submitted!");
+                setShow(!show)
+                
+            }
+            window.location.reload()
+            
+
+        } catch (error) {
+            console.log(error);
+        }
     };
     return (
         <div className="mt-20 space-y-5">
-            <h1 className="text-sm font-semibold text-gray-600">রিভিউ এবং রেটিং</h1>
+            <button onClick={() => setShow(!show)} className="text-sm font-semibold text-gray-600 flex gap-1 items-center  hover:text-red-500 duration-300"><FaRegEdit /> আপনার রিভিউটি লিখুন</button>
 
-            <div className="space-y-3">
+            <div className={`space-y-3 ${show ? 'block' : 'hidden'}`}>
                 <h1 className="text-sm text-red-500">এই বই সম্পর্কে আপনার মতামত দিন -</h1>
 
                 <p className="text-base text-gray-600">Your email address will not be published. Required fields are marked *</p>
@@ -40,8 +63,8 @@ const ReviewBooks = ({id}) => {
                                 <span
                                     key={star}
                                     onClick={() => handleRatingClick(star)}
-                                    
-                                    className={`text-lg cursor-pointer ${star <= rating ? 'text-red-500': 'hover:text-red-500 text-lg text-gray-600'}`}
+
+                                    className={`text-lg cursor-pointer ${star <= rating ? 'text-red-500' : 'hover:text-red-500 text-lg text-gray-600'}`}
                                 >
                                     ★
                                 </span>
@@ -50,7 +73,7 @@ const ReviewBooks = ({id}) => {
                     </div>
 
                     <div className="flex items-center justify-between gap-5">
-                    <div className="w-full">
+                        {/* <div className="w-full">
                         <label htmlFor="name">Name *</label>
                         <input
                             type="text"
@@ -66,9 +89,9 @@ const ReviewBooks = ({id}) => {
                             }}
                             required
                         />
-                    </div>
+                    </div> */}
 
-                    <div className="w-full">
+                        {/* <div className="w-full">
                         <label htmlFor="email">Email *</label>
                         <input
                             type="email"
@@ -84,7 +107,7 @@ const ReviewBooks = ({id}) => {
                             }}
                             required
                         />
-                    </div>
+                    </div> */}
                     </div>
 
                     <div style={{ marginBottom: "20px" }}>
@@ -104,7 +127,7 @@ const ReviewBooks = ({id}) => {
                             required
                         />
                     </div>
-                    
+
 
                     <button
                         type="submit"
@@ -115,6 +138,10 @@ const ReviewBooks = ({id}) => {
                 </form>
 
             </div>
+
+            <AllReview bookReview={bookReview}></AllReview>
+
+
         </div>
     );
 };

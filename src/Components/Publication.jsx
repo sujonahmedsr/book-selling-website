@@ -43,9 +43,9 @@ const Publication = () => {
     return (
         <div className="container mx-auto mt-24">
             <div className="flex items-center justify-between border border-gray-200 shadow-lg p-5">
-                <h1 className="text-lg font-semibold text-red-600">জনপ্রিয় লেখক</h1>
+                <h1 className="text-lg font-semibold text-red-600">জনপ্রিয় প্রকাশক</h1>
                 <Link to={'/writers'}>
-                    <button className="px-4 py-2 border border-gray-100 bg-red-600 text-white hover:bg-gray-700 duration-300">সকল লেখক</button>
+                    <button className="px-4 py-2 border border-gray-100 bg-red-600 text-white hover:bg-gray-700 duration-300">সকল প্রকাশক</button>
                 </Link>
             </div>
 
@@ -56,8 +56,12 @@ const Publication = () => {
                         disableOnInteraction: false,
                     }}
                     breakpoints={{
-                        640: {
+                        440: {
                             slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        640: {
+                            slidesPerView: 3,
                             spaceBetween: 20,
                         },
                         768: {

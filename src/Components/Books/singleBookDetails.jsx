@@ -11,7 +11,8 @@ import ReviewBooks from './ReviewBooks';
 // import { IoClose } from 'react-icons/io5';
 
 const SingleBookDetails = ({ bookDetails }) => {
-    const {id, title, price, sell_price, img, number_of_page, author, publication, subject, edition, book, relatedProducts } = bookDetails
+    const {title, price, sell_price, img, number_of_page, author, publication, subject, edition, book, relatedProducts } = bookDetails
+    
 
     const dispatch = useDispatch()
     const handleCart = () => {
@@ -85,7 +86,7 @@ const SingleBookDetails = ({ bookDetails }) => {
                     </div>
 
 
-                    <ReviewBooks id={id}></ReviewBooks>
+                    <ReviewBooks bookDetails={bookDetails}></ReviewBooks>
                 </div>
 
                 {/* related products  */}

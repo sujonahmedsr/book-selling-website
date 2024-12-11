@@ -58,8 +58,12 @@ const Writer = () => {
                         disableOnInteraction: false,
                     }}
                     breakpoints={{
-                        640: {
+                        440: {
                             slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        640: {
+                            slidesPerView: 3,
                             spaceBetween: 20,
                         },
                         768: {

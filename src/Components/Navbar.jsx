@@ -13,7 +13,7 @@ import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
     const [isSideMenuOpen, setMenu] = useState(false);
-    const [show, hide, location] = useCustomNavbarSH()
+    const [show, location] = useCustomNavbarSH()
 
     const { carts } = useSelector(state => state.cart)
 
@@ -77,7 +77,7 @@ const Navbar = () => {
                             </Link>
                                 :
                                 <>
-                                    <button data-tooltip-id="my-tooltip" data-tooltip-content="No carts Add." type="button" className="rounded bg-red-500 hover:bg-gray-700 px-4 py-2 text-white mx-4 flex items-center space-x-2 duration-300">
+                                    <button data-tooltip-id="my-tooltip" data-tooltip-content="Your carts is emty now." type="button" className="rounded bg-red-500 hover:bg-gray-700 px-4 py-2 text-white mx-4 flex items-center space-x-2 duration-300">
                                         <IoCartOutline className="text-2xl" />
                                         <span className="font-bold">{carts?.length}</span>
                                     </button>
@@ -100,7 +100,7 @@ const Navbar = () => {
 
                 <div className="lg:block hidden">
                     {
-                        show || hide &&
+                        // show || hide &&
                         <div className="flex items-center justify-center font-thin text-gray-700 text-lg">
                             {
                                 listOfNavigation.map((item, id) => <div key={id + 1}>
