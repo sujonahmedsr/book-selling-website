@@ -19,7 +19,7 @@ const Category = () => {
             .filter((item => {
                 return writerSearch.toLowerCase() === '' ? item : item.name.toLowerCase().includes(writerSearch)
             })).map(d => <Link to={`/categoryBooks/${d.slug}`} key={d.id}>
-                <div className="border-l-2 border-red-600 py-2 px-4">{d.name}</div>
+                <div className="border-l-2 border-primary py-2 px-4">{d.name}</div>
             </Link>
             )
 
@@ -28,7 +28,7 @@ const Category = () => {
     return (
         <div className="container mx-auto p-5 space-y-5">
             <div className="flex items-center justify-between border border-gray-200 shadow p-5">
-                <h1 className="text-lg font-semibold text-red-600">ক্যাটাগরি সমূহ
+                <h1 className="text-lg font-semibold text-primary">ক্যাটাগরি সমূহ
                 </h1>
             </div>
             <div className="flex items-center border border-gray-300 rounded-md overflow-hidden max-w-sm">
@@ -40,7 +40,7 @@ const Category = () => {
                     className="flex-1 px-4 border-none outline-none text-gray-700 placeholder-gray-500"
                 />
                 <button
-                    className="bg-red-500 hover:bg-red-600 border-none outline-none text-white px-4 py-2">
+                    className="bg-primary hover:bg-primary border-none outline-none text-white px-4 py-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"

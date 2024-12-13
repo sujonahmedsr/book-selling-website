@@ -45,14 +45,15 @@ const ReviewBooks = ({ bookDetails }) => {
 
         } catch (error) {
             console.log(error);
+            toast("Something went wrong!");
         }
     };
     return (
         <div className="mt-20 space-y-5">
-            <button onClick={() => setShow(!show)} className="text-sm font-semibold text-gray-600 flex gap-1 items-center  hover:text-red-500 duration-300"><FaRegEdit /> আপনার রিভিউটি লিখুন</button>
+            <button onClick={() => setShow(!show)} className="text-sm font-semibold text-gray-600 flex gap-1 items-center  hover:text-primary duration-300"><FaRegEdit /> আপনার রিভিউটি লিখুন</button>
 
             <div className={`space-y-3 ${show ? 'block' : 'hidden'}`}>
-                <h1 className="text-sm text-red-500">এই বই সম্পর্কে আপনার মতামত দিন -</h1>
+                <h1 className="text-sm text-primary">এই বই সম্পর্কে আপনার মতামত দিন -</h1>
 
                 <p className="text-base text-gray-600">Your email address will not be published. Required fields are marked *</p>
                 <form onSubmit={handleSubmit} className="space-y-5">
@@ -64,7 +65,7 @@ const ReviewBooks = ({ bookDetails }) => {
                                     key={star}
                                     onClick={() => handleRatingClick(star)}
 
-                                    className={`text-lg cursor-pointer ${star <= rating ? 'text-red-500' : 'hover:text-red-500 text-lg text-gray-600'}`}
+                                    className={`text-lg cursor-pointer ${star <= rating ? 'text-primary' : 'hover:text-primary text-lg text-gray-600'}`}
                                 >
                                     ★
                                 </span>
@@ -131,7 +132,7 @@ const ReviewBooks = ({ bookDetails }) => {
 
                     <button
                         type="submit"
-                        className="bg-red-500 hover:bg-gray-700 duration-300 text-white border-none px-4 py-2 cursor-pointer rounded"
+                        className="bg-primary hover:bg-gray-700 duration-300 text-white border-none px-4 py-2 cursor-pointer rounded"
                     >
                         সাবমিট
                     </button>

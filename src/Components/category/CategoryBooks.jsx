@@ -32,7 +32,7 @@ const CategoryBooks = () => {
             <div className="flex items-center justify-between border border-gray-200 shadow p-5">
                 <h1 className="text-lg font-semibold text-red-600">{writterName?.category?.name}</h1>
             </div>
-            <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 mt-5">
+            <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-5 mt-5">
                 {content}
             </div>
         </div>

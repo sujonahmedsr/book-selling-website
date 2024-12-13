@@ -19,8 +19,8 @@ export const listOfNavigation = [
         title: 'বিষয় সমূহ',
         link: '/subjects'
     },
-    {
-        title: 'ক্যাটাগরি  সমূহ',
-        link: '/category'
-    },
+    // {
+    //     title: 'ক্যাটাগরি  সমূহ',
+    //     link: '/category'
+    // },
 ]

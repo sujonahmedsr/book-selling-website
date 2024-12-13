@@ -30,7 +30,7 @@ const BookInHomePage = () => {
       </div>
     }
     if (!isLoading && isError) {
-        content = <div className="text-red-600">{error?.status}</div>
+        content = <div className="text-primary">{error?.status}</div>
     }
     if (!isLoading && !isError && allBooks?.data?.length === 0) {
         content = <div className="text-lg font-semibold text-gray-700">No Products Found...</div>
@@ -48,17 +48,25 @@ const BookInHomePage = () => {
             <Swiper
                 spaceBetween={30}
                 breakpoints={{
+                    280: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
                     480: {
                         slidesPerView: 2,
                         spaceBetween: 20,
                     },
                     768: {
                         slidesPerView: 3,
-                        spaceBetween: 40,
+                        spaceBetween: 20,
+                    },
+                    900: {
+                        slidesPerView: 4,
+                        spaceBetween: 20,
                     },
                     1024: {
-                        slidesPerView: 5,
-                        spaceBetween: 50,
+                        slidesPerView: 6,
+                        spaceBetween: 20,
                     },
                 }}
                 loop={true}

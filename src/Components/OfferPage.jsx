@@ -35,7 +35,7 @@ const OfferPage = () => {
         <div className="container mx-auto mt-24">
             <div className="flex lg:flex-row flex-col items-center justify-between gap-10">
                 <div className="space-y-3 max-w-sm text-center">
-                    <h2 className="text-lg font-semibold text-red-500">Upcoming Campaign <br /></h2>
+                    <h2 className="text-lg font-semibold text-primary">Upcoming Campaign <br /></h2>
                     <h1 className="text-4xl font-bold text-gray-700 leading-normal">Choose Your Books From Here</h1>
                     <div className="gap-5 text-gray-700 flex items-center justify-center">
                         <div>
@@ -56,7 +56,7 @@ const OfferPage = () => {
                         </div>
                     </div>
                     <div>
-                        <button className="text-white font-semibold px-4 py-2 rounded bg-red-500 hover:bg-gray-700 duration-300">View Details</button>
+                        <button className="text-white font-semibold px-4 py-2 rounded bg-primary hover:bg-gray-700 duration-300">View Details</button>
                     </div>
                 </div>
 

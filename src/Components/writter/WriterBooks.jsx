@@ -27,11 +27,11 @@ const WriterBooks = () => {
     const writterName = authorBooks?.data?.find(item => item?.author)
 
     return (
-        <div className="mt-5 container mx-auto px-4">
+        <div className=" container md:mt-10 p-5 mx-auto px-4">
             <div className="flex items-center justify-between border border-gray-200 shadow p-5">
-                <h1 className="text-lg font-semibold text-red-600">{writterName?.author?.name}</h1>
+                <h1 className="text-lg font-semibold text-primary">{writterName?.author?.name}</h1>
             </div>
-            <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 mt-5">
+            <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-5 mt-5">
                 {content}
             </div>
         </div>

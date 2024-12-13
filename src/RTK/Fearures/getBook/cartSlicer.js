@@ -10,7 +10,8 @@ const initialState = {
     carts: getItem.carts || [],
     selectedItems: getItem.selectedItems || 0,
     totalPrice: getItem.totalPrice || 0,
-    grandTotal: getItem.grandTotal || 0
+    grandTotal: getItem.grandTotal || 0,
+    wishList: getItem.wishList || []
 }
 
 const cartSlice = createSlice({
@@ -56,7 +57,30 @@ const cartSlice = createSlice({
             state.selectedItems = setSelectedItems(state)
             state.totalPrice = setTotalPrice(state)
             localStorage.setItem('carts', JSON.stringify(state))
-        }
+            toast("Remove Cart")
+        },
+        wistList: (state, action) => {
+            const isExiting = state.wishList.find(wish => wish.id === action.payload.id)
+
+            if (!isExiting) {
+                state.wishList.push({ ...action.payload })
+                toast("WishList added")
+            } else {
+                console.log('Alrady WishList  Add This');
+                toast("Alrady WishList Add This")
+            }
+
+            state.selectedItems = setSelectedItems(state)
+            state.totalPrice = setTotalPrice(state)
+            localStorage.setItem('carts', JSON.stringify(state))
+        },
+        removeWishList: (state, action) => {
+            state.wishList = state.wishList.filter(cart => cart.id !== action.payload)
+            state.selectedItems = setSelectedItems(state)
+            state.totalPrice = setTotalPrice(state)
+            localStorage.setItem('carts', JSON.stringify(state))
+            toast("Remove from Wishlist")
+        },
     }
 
 })
@@ -72,5 +96,5 @@ export const setTotalPrice = state =>
         return Number(total + cart.quantity * cart.sell_price)
     }, 0)
 
-export const { addToCart, updateCartQuantity, removeCart } = cartSlice.actions;
+export const { addToCart, updateCartQuantity, removeCart, wistList, removeWishList } = cartSlice.actions;
 export default cartSlice.reducer;

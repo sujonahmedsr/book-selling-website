@@ -31,18 +31,18 @@ const Card = ({ item }) => {
                     {/* add & minus quantity */}
                     <div className="mt-4 md:flex justify-between space-y-6 space-x-6 ">
                         <div className="flex items-center border-gray-100 space-x-3">
-                            <span onClick={() => handleCartQuantity('decrement', id)} className="cursor-pointer rounded-l bg-gray-300 py-1 px-3.5 duration-100 active:bg-red-500">
+                            <span onClick={() => handleCartQuantity('decrement', id)} className="cursor-pointer rounded-l bg-gray-300 py-1 px-3.5 duration-100 active:bg-primary">
                                 {" "}
                                 -{" "}
                             </span>
                             <span>{quantity}</span>
-                            <span onClick={() => handleCartQuantity('increment', id)} className="cursor-pointer rounded-r bg-gray-300 py-1 px-3 duration-100 active:bg-red-500">
+                            <span onClick={() => handleCartQuantity('increment', id)} className="cursor-pointer rounded-r bg-gray-300 py-1 px-3 duration-100 active:bg-primary">
 
                                 +
                             </span>
                         </div>
                         <div className="flex items-center space-x-4">
-                            <button onClick={deleteCartItem} className="lws-removeFromCart flex items-center gap-2 px-4 py-2 rounded bg-gray-700 text-white font-semibold hover:bg-red-500 duration-300 text-base" >
+                            <button onClick={deleteCartItem} className="lws-removeFromCart flex items-center gap-2 px-4 py-2 rounded bg-primary text-white font-semibold hover:bg-gray-700 duration-300 text-base" >
                                 Remove From Cart
                             </button>
                         </div>

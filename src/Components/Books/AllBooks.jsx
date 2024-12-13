@@ -48,8 +48,8 @@ const AllBooks = () => {
             .map(book => <SingleBooks key={book.id} book={book}></SingleBooks>)
     }
     return (
-        <div className="grid lg:grid-cols-12 md:grid-cols-1 gap-10 container mx-auto pt-10 px-3">
-            <div className="lg:col-span-3 col-span-1 w-full space-y-5">
+        <div className="grid lg:grid-cols-10 md:grid-cols-1 gap-3 container mx-auto md:mt-14 px-3">
+            <div className="lg:col-span-2 col-span-1 w-full space-y-5">
                 {/* sort by price and latest  */}
                 <ProductSort handleFilterChange={handleFilterChange}></ProductSort>
 
@@ -61,11 +61,9 @@ const AllBooks = () => {
                 {/* sort by subject */}
                 <ShopBySubject handleFilterChange={handleFilterChange}></ShopBySubject>
 
-                {/* <PriceRange price={filters.price} handleFilterChange={handleFilterChange}></PriceRange> */}
-                {/* <EbookStock></EbookStock> */}
-                {/* <ProductFilter></ProductFilter> */}
+                
             </div>
-            <div className="lg:col-span-9 col-span-1">
+            <div className="lg:col-span-8 col-span-1">
                 <>
                     {/* <div className="block  rounded-full w-2/3  p-[1px] mb-5">
                         <div className="items-center justify-between border border-gray-300 rounded-full flex w-full bg-white p-1">
@@ -82,7 +80,7 @@ const AllBooks = () => {
                             className="flex-1 px-4 border-none outline-none text-gray-700 placeholder-gray-500"
                         />
                         <button
-                            className="bg-red-500 hover:bg-red-600 border-none outline-none text-white px-4 py-2">
+                            className="bg-primary border-none outline-none text-white px-4 py-2">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -98,7 +96,7 @@ const AllBooks = () => {
                             </svg>
                         </button>
                     </div>
-                    <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
+                    <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-3">
                         {content}
                     </div>
                 </>

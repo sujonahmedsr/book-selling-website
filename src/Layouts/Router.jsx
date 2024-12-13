@@ -6,7 +6,6 @@ import SignUp from "../Pages/SignUp";
 import AllCards from "../Pages/CheckOut/AllCards";
 import HeroPage from "../Components/HeroPage";
 import OrderDetails from "../Pages/OrderPage/OrderDetails";
-import Electronics from "../Components/Electronics/Electronics";
 import BooksDetails from "../Components/Books/BooksDetails";
 import Writers from "../Components/writter/Writers";
 import Publications from "../Components/publication/Publications";
@@ -18,6 +17,8 @@ import SubjectBooks from "../Components/subjects/SubjectBooks";
 import Category from "../Components/category/Category";
 import CategoryBooks from "../Components/category/CategoryBooks";
 import SuccessOrderMessage from "../Pages/OrderPage/SuccessOrderMessage";
+import ModalBooks from "../Components/Books/ModalBooks";
+import WishList from "../Components/WishList";
 
 const router = createBrowserRouter([
     {
@@ -38,8 +39,12 @@ const router = createBrowserRouter([
                 element: <BooksDetails></BooksDetails>
             },
             {
-                path: '/Electronics',
-                element: <Electronics></Electronics>
+                path: '/modal/:slug',
+                element: <ModalBooks></ModalBooks>
+            },
+            {
+                path: '/wishList',
+                element: <WishList></WishList>
             },
             {
                 path: '/writers',

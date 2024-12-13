@@ -40,7 +40,7 @@ const Checkout = () => {
                     </div>
                 </div>
                 <Link to={'/Order_Place'}>
-                    <button className="mt-6 w-full rounded-md bg-red-500 py-2 font-medium text-blue-50 hover:bg-gray-700 flex items-center justify-center gap-2 duration-300">
+                    <button className="mt-6 w-full rounded-md bg-primary py-2 font-medium text-blue-50 hover:bg-gray-700 flex items-center justify-center gap-2 duration-300">
                         Check out <FaArrowRightLong />
                     </button>
                 </Link>
