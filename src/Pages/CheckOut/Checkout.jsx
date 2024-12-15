@@ -39,9 +39,14 @@ const Checkout = () => {
                         <p className="mb-1 text-lg font-bold">TK. {totalPrice?.toFixed(2)}</p>
                     </div>
                 </div>
+                <Link to={'/Gitf_Order'}>
+                    <button className="mt-2 w-full rounded-sm py-2 font-medium border-2 border-primary text-primary  flex items-center justify-center gap-2 duration-300">
+                        Order as a Gift <FaArrowRightLong />
+                    </button>
+                </Link>
                 <Link to={'/Order_Place'}>
-                    <button className="mt-6 w-full rounded-md bg-primary py-2 font-medium text-blue-50 hover:bg-gray-700 flex items-center justify-center gap-2 duration-300">
-                        Check out <FaArrowRightLong />
+                    <button className="mt-2 w-full rounded-sm bg-primary py-2 font-medium text-blue-50 hover:bg-gray-700 flex items-center justify-center gap-2 duration-300">
+                        Procced to Check out <FaArrowRightLong />
                     </button>
                 </Link>
             </div>

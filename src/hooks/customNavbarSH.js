@@ -15,7 +15,7 @@ const useCustomNavbarSH = () => {
     }
 
     useEffect(() => {
-        location.pathname === '/AllCards' || location.pathname === '/Order_Place' ? setHide(false) : setHide(true)
+        location.pathname === '/AllCards' || location.pathname === '/Order_Place' || location.pathname === '/Gitf_Order' ? setHide(false) : setHide(true)
     
         window.addEventListener('scroll', controlNavbar)
         return () => {

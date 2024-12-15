@@ -32,8 +32,14 @@ export const getBooksApi = createApi({
         }),
         singleBooksApi: builder.query({
             query: (slug) => `/products/${slug}`
-        })
+        }),
+        allDistrict: builder.query({
+            query: () => `/districts`
+        }),
+        allUpazilas: builder.query({
+            query: () => `/upazilas`
+        }),
     })
 })
 
-export const { useBooksProductsApiQuery, useSingleBooksApiQuery, useGetCategoryQuery, useGetAutorsQuery, useGetPublicationsQuery, useGetSubjectsQuery } = getBooksApi
+export const { useBooksProductsApiQuery, useSingleBooksApiQuery, useGetCategoryQuery, useGetAutorsQuery, useGetPublicationsQuery, useGetSubjectsQuery, useAllDistrictQuery, useAllUpazilasQuery } = getBooksApi

@@ -19,6 +19,7 @@ import CategoryBooks from "../Components/category/CategoryBooks";
 import SuccessOrderMessage from "../Pages/OrderPage/SuccessOrderMessage";
 import ModalBooks from "../Components/Books/ModalBooks";
 import WishList from "../Components/WishList";
+import GiftOrderDetails from "../Pages/OrderPage/GiftOrderDetails";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <HeroPage></HeroPage>
+            },
+            {
+                path: 'signIn',
+                element: <SignIn></SignIn>
+            },
+            {
+                path: 'signUp',
+                element: <SignUp></SignUp>
             },
             {
                 path: '/AllBooks',
@@ -87,19 +96,15 @@ const router = createBrowserRouter([
                 element: <OrderDetails></OrderDetails>
             },
             {
+                path: '/Gitf_Order',
+                element: <GiftOrderDetails></GiftOrderDetails>
+            },
+            {
                 path: '/OrderSuccessMessage',
                 element: <SuccessOrderMessage></SuccessOrderMessage>
             },
         ]
     },
-    {
-        path: 'signIn',
-        element: <SignIn></SignIn>
-    },
-    {
-        path: 'signUp',
-        element: <SignUp></SignUp>
-    }
 
 ])
 export default router

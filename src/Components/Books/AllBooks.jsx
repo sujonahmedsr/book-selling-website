@@ -49,6 +49,9 @@ const AllBooks = () => {
     }
     return (
         <div className="grid lg:grid-cols-10 md:grid-cols-1 gap-3 container mx-auto md:mt-14 px-3">
+            {/* <Helmet>
+                <title>All Books</title>
+            </Helmet> */}
             <div className="lg:col-span-2 col-span-1 w-full space-y-5">
                 {/* sort by price and latest  */}
                 <ProductSort handleFilterChange={handleFilterChange}></ProductSort>
@@ -61,7 +64,7 @@ const AllBooks = () => {
                 {/* sort by subject */}
                 <ShopBySubject handleFilterChange={handleFilterChange}></ShopBySubject>
 
-                
+
             </div>
             <div className="lg:col-span-8 col-span-1">
                 <>

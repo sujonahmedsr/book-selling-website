@@ -1,10 +1,38 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useAllDistrictQuery, useAllUpazilasQuery } from '../../RTK/Fearures/getBook/getBookApi';
+import cod from '../../assets/icons/cod.webp'
 
 const CustomarShippingDetails = () => {
+    const { data: allDistricts } = useAllDistrictQuery()
+    const { data: allUpazila } = useAllUpazilasQuery()
+    const [districts, setDistricts] = useState([]);
+    const [upazilas, setUpazilas] = useState([]);
+    const [filteredUpazilas, setFilteredUpazilas] = useState([]);
+    const [selectedDistrict, setSelectedDistrict] = useState("");
+    const [selectedUpazila, setSelectedUpazila] = useState("");
+
+    useEffect(() => {
+        setDistricts(allDistricts)
+        setUpazilas(allUpazila)
+    }, [allDistricts, allUpazila])
+
+    // Filter upazilas based on selected district
+    useEffect(() => {
+        if (selectedDistrict) {
+            const selectD = districts?.data?.find(item => item.name === selectedDistrict)
+            const filtered = upazilas?.data?.filter(
+                (upazila) => upazila?.district_id === Number(selectD.id)
+            );
+            setFilteredUpazilas(filtered);
+        } else {
+            setFilteredUpazilas([]);
+        }
+    }, [selectedDistrict, upazilas, districts]);
+    
 
     const navigate = useNavigate()
     const [orderSuccess, serOrderSuccess] = useState(null)
@@ -16,6 +44,7 @@ const CustomarShippingDetails = () => {
         deliveryAddress: "",
         deliveryAreaId: 1,
     });
+
 
     const products = carts.map((product) => {
         const variant = product.variant_product[0];
@@ -147,6 +176,27 @@ const CustomarShippingDetails = () => {
                         </div> */}
                     </div>
 
+                    <div className='flex items-center justify-between gap-5 w-full'>
+            <select onChange={(e) => setSelectedDistrict(e.target.value)}
+                value={selectedDistrict}
+                className=' mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300' name="" id="">
+                <option value="">Select District</option>
+                {
+                    districts?.data?.map(district => <option key={district.id} value={district?.name}>{district?.bn_name}</option>)
+                }
+
+            </select>
+            <select onChange={(e) => setSelectedUpazila(e.target.value)}
+                value={selectedUpazila} disabled={!selectedDistrict}
+                className=' mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300' name="" id="">
+                <option value="">Upazilas</option>
+                {
+                    filteredUpazilas?.map(district => <option key={district?.id} value={district?.name}>{district?.bn_name}</option>)
+                }
+            </select>
+        </div>
+                    
+
                     {/* Address */}
                     <div className="w-full">
                         <label htmlFor="address" className="block text-base font-semibold text-gray-700">
@@ -166,7 +216,7 @@ const CustomarShippingDetails = () => {
                 </div>
 
                 {/* Payment Method */}
-                {/* <div className="border-t border-gray-300">
+                <div className="border-t border-gray-300">
                     <div className="border-b border-gray-300 p-5">
                         <h1 className="text-xl font-semibold text-gray-700">
                             Payment Method <span className="text-base font-thin">(Please select a payment method)</span>
@@ -186,7 +236,7 @@ const CustomarShippingDetails = () => {
                             <p className="text-base font-thin text-gray-500">ক্যাশ অন ডেলিভারি</p>
                         </label>
                     </div>
-                </div> */}
+                </div>
 
                 {/* Submit Button */}
                 <div className="border-t border-gray-300 p-5">

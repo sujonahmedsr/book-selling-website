@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/Img/rokomari_logo.webp";
 import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
@@ -8,22 +7,16 @@ const SignUp = () => {
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <Link to={'/'}>
-                    <img
-                        alt="Your Company"
-                        src={logo}
-                        className="mx-auto h-10 w-auto"
-                    />
-                </Link>
-                <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                
+                <h2 className="my-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-700">
                     Create your account
                 </h2>
             </div>
 
-            <div className="mt-10 sm:mx-auto sm:w-full border border-gray-300 p-5 sm:max-w-sm">
+            <div className=" sm:mx-auto sm:w-full border border-gray-300 p-5 sm:max-w-sm">
                 <form action="#" method="POST" className="space-y-6">
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-700">
                             Full Name
                         </label>
                         <div className="mt-2">
@@ -34,13 +27,13 @@ const SignUp = () => {
                                 required
                                 autoComplete="name"
                                 placeholder="Full Name"
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline focus:outline-gray-400 px-2 sm:text-sm sm:leading-6"
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline focus:outline-gray-400 px-2 sm:text-sm sm:leading-6"
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-700">
                             Email address
                         </label>
                         <div className="mt-2">
@@ -51,14 +44,14 @@ const SignUp = () => {
                                 required
                                 autoComplete="email"
                                 placeholder="E-mail"
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline focus:outline-gray-400 px-2 sm:text-sm sm:leading-6"
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline focus:outline-gray-400 px-2 sm:text-sm sm:leading-6"
                             />
                         </div>
                     </div>
 
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-700">
                                 Password
                             </label>
                         </div>
@@ -70,14 +63,14 @@ const SignUp = () => {
                                 required
                                 placeholder="Password"
                                 autoComplete="current-password"
-                                className=" block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline focus:outline-gray-400 px-2 sm:text-sm sm:leading-6"
+                                className=" block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline focus:outline-gray-400 px-2 sm:text-sm sm:leading-6"
                             />
                         </div>
                     </div>
 
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-700">
                                 Confirm Password
                             </label>
                         </div>
@@ -89,7 +82,7 @@ const SignUp = () => {
                                 placeholder="Confirm Password"
                                 required
                                 autoComplete="current-password"
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline focus:outline-gray-400 px-2 sm:text-sm sm:leading-6"
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline focus:outline-gray-400 px-2 sm:text-sm sm:leading-6"
                             />
                             <div className="absolute right-2 top-2">
                                 <p className="text-xl text-gray-700" onClick={() => setShow(!show)}>{show ? <FaEyeSlash /> : <FaEye />}</p>
@@ -100,16 +93,16 @@ const SignUp = () => {
                     <div>
                         <button
                             type="submit"
-                            className="flex w-full justify-center rounded-md bg-red-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 duration-300"
+                            className="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 duration-300"
                         >
                             Sign up
                         </button>
                     </div>
                 </form>
 
-                <p className="mt-10 text-center text-sm text-gray-500">
+                <p className="mt-5 text-center text-sm text-gray-500">
                     Have Account?{' '}
-                    <Link to={'/SignIn'} className="font-semibold leading-6 text-red-600 hover:text-gray-700 duration-300">
+                    <Link to={'/SignIn'} className="font-semibold leading-6 text-primary hover:text-gray-700 duration-300">
                         Sign in.
                     </Link>
                 </p>
