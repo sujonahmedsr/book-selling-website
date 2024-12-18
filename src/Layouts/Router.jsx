@@ -20,6 +20,9 @@ import SuccessOrderMessage from "../Pages/OrderPage/SuccessOrderMessage";
 import ModalBooks from "../Components/Books/ModalBooks";
 import WishList from "../Components/WishList";
 import GiftOrderDetails from "../Pages/OrderPage/GiftOrderDetails";
+import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
+import MyProfile from "../Components/MyProfile";
+import UpdateProfile from "../Components/UpdateProfile";
 
 const router = createBrowserRouter([
     {
@@ -32,12 +35,26 @@ const router = createBrowserRouter([
                 element: <HeroPage></HeroPage>
             },
             {
-                path: 'signIn',
+                path: '/signIn',
                 element: <SignIn></SignIn>
             },
             {
-                path: 'signUp',
+                path: '/signUp',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/My_Profile',
+                element: <PrivateRoute>
+                    <MyProfile></MyProfile>
+                </PrivateRoute>
+
+            },
+            {
+                path: '/update_Profile',
+                element: <PrivateRoute>
+                    <UpdateProfile></UpdateProfile>
+                </PrivateRoute>
+
             },
             {
                 path: '/AllBooks',
@@ -93,11 +110,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/Order_Place',
-                element: <OrderDetails></OrderDetails>
+                element: <PrivateRoute>
+                    <OrderDetails></OrderDetails>
+                </PrivateRoute>
+
             },
             {
                 path: '/Gitf_Order',
-                element: <GiftOrderDetails></GiftOrderDetails>
+                element: <PrivateRoute>
+                    <GiftOrderDetails></GiftOrderDetails>
+                </PrivateRoute>
             },
             {
                 path: '/OrderSuccessMessage',

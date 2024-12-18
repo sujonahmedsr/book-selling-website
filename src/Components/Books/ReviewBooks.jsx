@@ -3,8 +3,11 @@ import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import AllReview from "./AllReview";
+import useAuth from "../../Pages/providers/useAuth";
+import { Link } from "react-router-dom";
 
 const ReviewBooks = ({ bookDetails }) => {
+    const { user } = useAuth()
     const { id, review: bookReview } = bookDetails
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState("");
@@ -38,10 +41,10 @@ const ReviewBooks = ({ bookDetails }) => {
                 await delay(1000)
                 toast("Review Submitted!");
                 setShow(!show)
-                
+
             }
             window.location.reload()
-            
+
 
         } catch (error) {
             console.log(error);
@@ -50,7 +53,14 @@ const ReviewBooks = ({ bookDetails }) => {
     };
     return (
         <div className="mt-20 space-y-5">
-            <button onClick={() => setShow(!show)} className="text-sm font-semibold text-gray-600 flex gap-1 items-center  hover:text-primary duration-300"><FaRegEdit /> আপনার রিভিউটি লিখুন</button>
+            {
+                user ? <button onClick={() => setShow(!show)} className="text-sm font-semibold text-gray-600 flex gap-1 items-center  hover:text-primary duration-300"><FaRegEdit /> আপনার রিভিউটি লিখুন</button>
+                    :
+                    <Link to={'/signIn'}>
+                        <button onClick={() => setShow(!show)} className="text-sm font-semibold text-gray-600 flex gap-1 items-center  hover:text-primary duration-300"><FaRegEdit /> আপনার রিভিউটি লিখুন</button>
+                    </Link>
+            }
+
 
             <div className={`space-y-3 ${show ? 'block' : 'hidden'}`}>
                 <h1 className="text-sm text-primary">এই বই সম্পর্কে আপনার মতামত দিন -</h1>

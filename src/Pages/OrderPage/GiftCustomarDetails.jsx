@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { useAllDistrictQuery, useAllUpazilasQuery } from "../../RTK/Fearures/getBook/getBookApi";
+import { useAllDistrictQuery, useAllUpazilasQuery, useGetProfileQuery } from "../../RTK/Fearures/getBook/getBookApi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
+import useAuth from "../providers/useAuth";
 
 const GiftCustomarDetails = () => {
+    const {user} = useAuth()
+    const {data: userData} = useGetProfileQuery(user?.id)
+
     const { data: allDistricts } = useAllDistrictQuery()
     const { data: allUpazila } = useAllUpazilasQuery()
     const [districts, setDistricts] = useState([]);
@@ -37,26 +41,57 @@ const GiftCustomarDetails = () => {
     const [orderSuccess, serOrderSuccess] = useState(null)
     const { carts } = useSelector(state => state.cart)
     const [formData, setFormData] = useState({
-        customerName: "",
-        phoneNumber: "",
-        email: "",
+        customerName: userData?.user?.name,
+        phoneNumber: userData?.user?.phone,
+        email: userData?.user?.email,
         deliveryAddress: "",
         deliveryAreaId: 1,
+        gift_name: "",
+        gift_number: "",
+        gift_city: "",
+        gift_upazila: "",
+        gift_address: "",
+        // gift_date: "",
+        gift_charge: "20"
     });
 
 
     const products = carts.map((product) => {
         const variant = product.variant_product[0];
         return {
-            product_id: product.id,
-            variant_id: variant.id,
-            quantity: product.quantity,
+            product_id: product?.id,
+            variant_id: variant?.id,
+            quantity: product?.quantity,
         };
     })
+    console.log(products);
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+    };
+
+    const handleDistrictChange = (e) => {
+        const value = e.target.value;
+        // const district = allDistricts?.data?.find(item => item.name === value)
+        setSelectedDistrict(value);
+        setFormData({
+            ...formData,
+            gift_city: value,
+        });
+    };
+
+    const handleUpazilaChange = (e) => {
+        const value = e.target.value; 
+        // const upazila = allUpazila?.data?.find(item => item.name === value)      
+        setSelectedUpazila(value);
+        setFormData({
+            ...formData,
+            gift_upazila: value,
+        });
+        
+        
     };
 
     const orderData = {
@@ -78,7 +113,7 @@ const GiftCustomarDetails = () => {
             serOrderSuccess(response.data);
 
             if (response?.data?.status === 'success') {
-                await localStorage.clear();
+                await localStorage.removeItem('carts');
                 toast("Order placed successfully")
             }
 
@@ -88,6 +123,8 @@ const GiftCustomarDetails = () => {
             window.location.reload()
 
         } catch (error) {
+            console.log(formData, orderData);
+            
             if (error.response) {
                 console.error('Server Error:', error.response.data);
                 console.error('Status Code:', error.response.status);
@@ -120,7 +157,8 @@ const GiftCustomarDetails = () => {
                                     id="fullName"
                                     name="customerName"
                                     type="text"
-                                    value={formData.fullName}
+                                    // defaultValue={userData?.user?.name}
+                                    value={formData.customerName}
                                     onChange={handleChange}
                                     className="mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300"
                                     placeholder="Name"
@@ -135,7 +173,8 @@ const GiftCustomarDetails = () => {
                                     id="mobileNumber"
                                     name="phoneNumber"
                                     type="text"
-                                    value={formData.mobileNumber}
+                                    // defaultValue={userData?.user?.phone}
+                                    value={formData.phoneNumber}
                                     onChange={handleChange}
                                     className="mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300"
                                     placeholder="017xx-xxxxxxx"
@@ -154,6 +193,7 @@ const GiftCustomarDetails = () => {
                                     id="email"
                                     name="email"
                                     type="email"
+                                    // defaultValue={userData?.user?.email}
                                     value={formData.email}
                                     onChange={handleChange}
                                     className="mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300"
@@ -178,7 +218,7 @@ const GiftCustomarDetails = () => {
                         </div> */}
                         </div>
 
-                        <div className='flex items-center justify-between gap-5 w-full'>
+                        {/* <div className='flex items-center justify-between gap-5 w-full'>
                             <select onChange={(e) => setSelectedDistrict(e.target.value)}
                                 value={selectedDistrict}
                                 className=' mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300' name="" id="">
@@ -196,11 +236,11 @@ const GiftCustomarDetails = () => {
                                     filteredUpazilas?.map(district => <option key={district?.id} value={district?.name}>{district?.bn_name}</option>)
                                 }
                             </select>
-                        </div>
+                        </div> */}
 
 
                         {/* Address */}
-                        <div className="w-full">
+                        {/* <div className="w-full">
                             <label htmlFor="address" className="block text-base font-semibold text-gray-700">
                                 Address
                             </label>
@@ -208,13 +248,13 @@ const GiftCustomarDetails = () => {
                                 id="address"
                                 name="deliveryAddress"
                                 rows={4}
-                                value={formData.address}
+                                value={formData.deliveryAddress}
                                 onChange={handleChange}
                                 className="mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300"
                                 placeholder="বাসা/ফ্ল্যাট নম্বর, পাড়া-মহল্লার নাম, পরিচিতির এলাকা উল্লেখ করুন"
                                 required
                             />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="flex flex-col items-center gap-6 p-5">
                     <div>
@@ -223,14 +263,14 @@ const GiftCustomarDetails = () => {
                         {/* Full Name and Mobile Number */}
                         <div className="flex flex-col items-center gap-5 w-full">
                             <div className="w-full">
-                                <label htmlFor="fullName" className="block text-base font-semibold text-gray-700">
+                                <label htmlFor="gift_name" className="block text-base font-semibold text-gray-700">
                                     Full Name
                                 </label>
                                 <input
-                                    id="fullName"
-                                    name="customerName"
+                                    id="gift_name"
+                                    name="gift_name"
                                     type="text"
-                                    value={formData.fullName}
+                                    value={formData.gift_name}
                                     onChange={handleChange}
                                     className="mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300"
                                     placeholder="Name"
@@ -238,14 +278,14 @@ const GiftCustomarDetails = () => {
                                 />
                             </div>
                             <div className="w-full">
-                                <label htmlFor="mobileNumber" className="block text-base font-semibold text-gray-700">
+                                <label htmlFor="gift_number" className="block text-base font-semibold text-gray-700">
                                     Mobile Number
                                 </label>
                                 <input
-                                    id="mobileNumber"
-                                    name="phoneNumber"
+                                    id="gift_number"
+                                    name="gift_number"
                                     type="text"
-                                    value={formData.mobileNumber}
+                                    value={formData.gift_number}
                                     onChange={handleChange}
                                     className="mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300"
                                     placeholder="017xx-xxxxxxx"
@@ -256,7 +296,7 @@ const GiftCustomarDetails = () => {
 
                         {/* Email and Area Selection */}
                         <div className="flex flex-col items-center gap-5 w-full">
-                            <div className="w-full">
+                            {/* <div className="w-full">
                                 <label htmlFor="email" className="block text-base font-semibold text-gray-700">
                                     Email
                                 </label>
@@ -270,7 +310,7 @@ const GiftCustomarDetails = () => {
                                     placeholder="xyz@mail.com"
                                     required
                                 />
-                            </div>
+                            </div> */}
                             {/* <div className="w-1/4">
                             <label htmlFor="area" className="block text-base font-semibold text-gray-700">
                                 Select Area
@@ -289,7 +329,9 @@ const GiftCustomarDetails = () => {
                         </div>
 
                         <div className='flex items-center justify-between gap-5 w-full'>
-                            <select onChange={(e) => setSelectedDistrict(e.target.value)}
+                            <select 
+                            // onChange={(e) => setSelectedDistrict(e.target.value)}
+                            onChange={handleDistrictChange}
                                 value={selectedDistrict}
                                 className=' mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300' name="" id="">
                                 <option value="">Select District</option>
@@ -298,7 +340,9 @@ const GiftCustomarDetails = () => {
                                 }
 
                             </select>
-                            <select onChange={(e) => setSelectedUpazila(e.target.value)}
+                            <select 
+                            onChange={handleUpazilaChange}
+                            // onChange={(e) => setSelectedUpazila(e.target.value)}
                                 value={selectedUpazila} disabled={!selectedDistrict}
                                 className=' mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300' name="" id="">
                                 <option value="">Upazilas</option>
@@ -311,14 +355,15 @@ const GiftCustomarDetails = () => {
 
                         {/* Address */}
                         <div className="w-full">
-                            <label htmlFor="address" className="block text-base font-semibold text-gray-700">
+                            <label htmlFor="deliveryAddress" className="block text-base font-semibold text-gray-700">
                                 Address
                             </label>
                             <textarea
-                                id="address"
+                                id="deliveryAddress"
                                 name="deliveryAddress"
                                 rows={4}
-                                value={formData.address}
+                                // value={formData.gift_address}
+                                value={formData.deliveryAddress}
                                 onChange={handleChange}
                                 className="mt-2.5 block w-full rounded-md border px-3.5 py-2 text-gray-900 placeholder:text-gray-400 outline-none border-gray-300"
                                 placeholder="বাসা/ফ্ল্যাট নম্বর, পাড়া-মহল্লার নাম, পরিচিতির এলাকা উল্লেখ করুন"

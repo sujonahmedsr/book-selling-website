@@ -15,11 +15,22 @@ import delivery from '../assets/logo/delivery-truck.svg'
 import discount from '../assets/logo/discount-light.svg'
 import { FaRegHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
+import useAuth from "../Pages/providers/useAuth";
 
 const Navbar = () => {
+    const [Profile, setProfile] = useState(false)
+    const { user, logout, loading } = useAuth()
     const [isSideMenuOpen, setMenu] = useState(false);
     const [show, hide, location] = useCustomNavbarSH()
+    
+    
     const { carts, wishList } = useSelector(state => state.cart)
+
+    if (loading) {
+        return <div className="flex items-center justify-center h-screen">
+            <img className="h-60" src={logo} alt={'kichukkhon.com'} />
+        </div>
+    }
 
     return (
         <>
@@ -48,37 +59,74 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <div className="md:flex items-center hidden space-x-5">
+                    <div className="flex items-center space-x-5">
 
                         {/* to do: when authentication complete then change it to user profile  */}
-                        <Link to={'/signIn'} className="rounded flex items-center gap-1  text-gray-700 hover:text-primary duration-300">
-                            <FaRegUser className="text-xl" />
-                            Sing in
-                        </Link>
+                        {
+                            user ? <div>
+                                <button onClick={() => setProfile(!Profile)}  type="button" className="flex text-sm rounded-full text-gray-700">
+                                    {
+                                        user?.photoURL ? 
+                                            <img className="w-8 h-8 rounded-full" src={user?.photoURL} alt="user photo" />
+                                            :
+                                            <FaRegUser className="text-xl" />
+                                    }
+
+                                </button>
+                                {/* <!-- Dropdown menu --> */}
+                                <div className={`z-50 ${Profile ? 'block' : 'hidden'} absolute right-5 mt-4 text-base list-none bg-white divide-y border divide-gray-100 rounded-lg shadow md:w-52 w-40`}>
+                                    <div className="px-4 pt-2">
+                                        <span className="block text-lg text-gray-900 font-semibold">{user?.name}</span>
+                                    </div>
+                                    <ul className="py-2 text-base" aria-labelledby="user-menu-button">
+                                        <Link to={'/My_Profile'}>
+                                            <li onClick={() => setProfile(!Profile)}>
+                                                <p className="block px-4 py-2  text-gray-700 ">Profile</p>
+                                            </li>
+                                        </Link>
+                                        <Link to={'/Settings'}>
+                                            <li>
+                                                <p className="block px-4 py-2  text-gray-700 ">My Orders</p>
+                                            </li>
+                                        </Link>
+
+                                        <li onClick={logout}>
+                                            <button className="block px-4 py-2  text-primary">Log out</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                                :
+                                <Link to={'/signIn'} className="rounded flex items-center gap-1  text-gray-700 hover:text-primary duration-300">
+                                    <FaRegUser className="text-xl" />
+                                    Sing in
+                                </Link>
+                        }
+
 
                         {
-                            wishList?.length > 0 ? <Link to={'/wishList'} className="relative">
+                            wishList?.length > 0 ? <Link to={'/wishList'} className="relative md:block hidden">
                                 <button type="button" className="rounded flex items-center hover:text-primary duration-300 text-gray-700">  <FaRegHeart className="text-2xl" /> </button>
 
                                 <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-primary border-2 border-white rounded-full -top-2 -end-4">{wishList?.length}</div>
                             </Link>
                                 :
-                                <div className="relative" data-tooltip-id="my-tooltip" data-tooltip-content="Wishlist is empty.">
+                                <div className="relative md:block hidden" data-tooltip-id="my-tooltip" data-tooltip-content="Wishlist is empty.">
                                     <button type="button" className="rounded flex items-center hover:text-primary duration-300 text-gray-700">  <FaRegHeart className="text-2xl" /> </button>
                                 </div>
                         }
 
 
                         {
-                            carts?.length > 0 ? <Link to={'/AllCards'} type="button" className="rounded  flex items-center space-x-2 duration-300 relative">
+                            carts?.length > 0 ? <Link to={'/AllCards'} type="button" className="rounded  md:flex items-center space-x-2 duration-300 relative hidden">
                                 <FaShoppingCart className="text-2xl" />
                                 <span className=" absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-primary border-2 border-white rounded-full -top-2 -end-3">{carts?.length}</span>
                             </Link>
                                 :
                                 <>
-                                    <button data-tooltip-id="my-tooltip" data-tooltip-content="Your carts is emty now." type="button" className="rounded  flex items-center space-x-2 duration-300">
+                                    <button data-tooltip-id="my-tooltip md:block hidden" data-tooltip-content="Your carts is emty now." type="button" className="rounded  flex items-center space-x-2 duration-300">
                                         <FaShoppingCart className="text-2xl" />
-                                        
+
                                     </button>
                                 </>
                         }
@@ -86,7 +134,7 @@ const Navbar = () => {
 
 
                     {/* it's show only middle screen  */}
-                    <button onClick={() => setMenu(true)} title="Open menu" type="button" className="p-4 lg:hidden">
+                    <button onClick={() => setMenu(true)} title="Open menu" type="button" className="lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-800">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -132,12 +180,6 @@ const Navbar = () => {
                         ))
                     }
                     <div className="flex items-center">
-
-                        {/* to do: when authentication complete then change it to user profile  */}
-                        <Link to={'/signIn'} className="rounded flex items-center gap-1 px-2 py-2 text-gray-700 hover:text-primary duration-300">
-                            <FaRegUser className="text-lg" />
-                            Sing in
-                        </Link>
 
                         <div className="space-y-2">
                             {

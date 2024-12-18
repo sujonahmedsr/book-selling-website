@@ -26,7 +26,7 @@ const Writers = () => {
     }
 
     return (
-        <div className="container mx-auto p-5 space-y-5 md:mt-10">
+        <div className="container mx-auto px-4 p-5 space-y-5 md:mt-10">
             <div className="flex items-center justify-between border border-gray-200 shadow p-5">
                 <h1 className="text-lg font-semibold text-primary">জনপ্রিয় লেখক</h1>
             </div>

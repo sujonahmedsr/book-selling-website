@@ -47,11 +47,11 @@ const CustomarShippingDetails = () => {
 
 
     const products = carts.map((product) => {
-        const variant = product.variant_product[0];
+        const variant = product?.variant_product[0];
         return {
-            product_id: product.id,
-            variant_id: variant.id,
-            quantity: product.quantity,
+            product_id: product?.id,
+            variant_id: variant?.id,
+            quantity: product?.quantity,
         };
     })
 
@@ -79,7 +79,7 @@ const CustomarShippingDetails = () => {
             serOrderSuccess(response.data);
 
             if (response?.data?.status === 'success') {
-                await localStorage.clear();
+                await localStorage.removeItem('carts');
                 toast("Order placed successfully")
             }
 

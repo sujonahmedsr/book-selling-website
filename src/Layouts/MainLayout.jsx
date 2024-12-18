@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { AuthProvider } from "../Pages/providers/AuthContext";
 
 const MainLayout = () => {
     const { pathname } = useLocation()
@@ -12,6 +13,7 @@ const MainLayout = () => {
         window.scrollTo(0, 0)
     }, [pathname])
     return (
+        <AuthProvider>
         <HelmetProvider>
             <Helmet>
                 <title>Kichukkhon.com</title>
@@ -36,6 +38,7 @@ const MainLayout = () => {
                 />
             </div>
         </HelmetProvider>
+        </AuthProvider>
     );
 };
 

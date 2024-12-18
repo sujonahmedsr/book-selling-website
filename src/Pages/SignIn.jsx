@@ -1,9 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { isValidEmail, isValidPhone } from "../hooks/validation";
+import useAuth from "./providers/useAuth";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
+    const { login, user } = useAuth();
     const [show, setShow] = useState(true)
+    const [userInput, setUserInput] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate()
+    const location = useLocation()
+    
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (isValidEmail(userInput) || isValidPhone(userInput)) {
+            const loginData = {
+                phone: userInput,
+                password
+            }
+
+            const result = await login(loginData);
+        
+            if (result.success) {
+                toast("Login successful!");
+                navigate(location?.state ? location.state : '/')
+            } else {
+                setError(result.message);
+            }
+
+        } else {
+            setError("Please enter a valid email or phone number.");
+        }
+    };
+
+    if(user) return
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -13,51 +47,49 @@ const SignIn = () => {
             </div>
 
             <div className=" sm:mx-auto sm:w-full sm:max-w-sm border border-gray-300 p-5">
-                <form className="space-y-6">
+                <form className="space-y-2" onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-700">
-                            Email address
+                        <label
+                            htmlFor="userInput"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Email or Phone
                         </label>
-                        <div className="mt-2">
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                required
-                                autoComplete="email"
-                                placeholder="E-mail"
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset focus:outline focus:outline-gray-400 px-2 ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
-                            />
-                        </div>
+                        <input
+                            type="text"
+                            id="userInput"
+                            value={userInput}
+                            onChange={(e) => setUserInput(e.target.value)}
+                            placeholder="Enter your email or phone"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-800"
+                        />
                     </div>
 
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-700">
+                            <label
+                                htmlFor="password"
+                                className="block text-sm font-medium text-gray-700"
+                            >
                                 Password
                             </label>
-                            {/* <div className="text-sm">
-                                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                    Forgot password?
-                                </a>
-                            </div> */}
+
                         </div>
                         <div className="mt-2 relative">
                             <input
-                                id="password"
-                                name="password"
                                 type={`${show ? 'password' : 'text'}`}
-                                required
-                                autoComplete="current-password"
-                                placeholder="Password"
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 focus:outline focus:outline-gray-400 px-2  ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                id="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Enter your password"
+                                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-800"
                             />
                             <div className="absolute right-2 top-2">
                                 <p className="text-xl text-gray-700" onClick={() => setShow(!show)}>{show ? <FaEyeSlash /> : <FaEye />}</p>
                             </div>
                         </div>
                     </div>
-
+                    <p className="text-red-500">{error}</p>
                     <div>
                         <button
                             type="submit"

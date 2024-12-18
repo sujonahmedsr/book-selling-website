@@ -39,7 +39,10 @@ export const getBooksApi = createApi({
         allUpazilas: builder.query({
             query: () => `/upazilas`
         }),
+        getProfile: builder.query({
+            query: (id) => `/getProfile/${id}`
+        }),
     })
 })
 
-export const { useBooksProductsApiQuery, useSingleBooksApiQuery, useGetCategoryQuery, useGetAutorsQuery, useGetPublicationsQuery, useGetSubjectsQuery, useAllDistrictQuery, useAllUpazilasQuery } = getBooksApi
+export const { useBooksProductsApiQuery, useSingleBooksApiQuery, useGetCategoryQuery, useGetAutorsQuery, useGetPublicationsQuery, useGetSubjectsQuery, useAllDistrictQuery, useAllUpazilasQuery, useGetProfileQuery } = getBooksApi

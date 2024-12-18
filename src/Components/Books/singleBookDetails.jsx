@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import RelatedProducts from './RelatedProducts';
 import ReviewBooks from './ReviewBooks';
-// import { IoClose } from 'react-icons/io5';
+import { IoClose } from "react-icons/io5";
 
 const SingleBookDetails = ({ bookDetails }) => {
-    const { title, price, sell_price, img, number_of_page, author, publication, subject, edition, book, relatedProducts } = bookDetails
+    const { title, price, sell_price, img, number_of_page, author, publication, subject, edition, pdf, relatedProducts } = bookDetails
 
 
     const dispatch = useDispatch()
@@ -97,14 +97,21 @@ const SingleBookDetails = ({ bookDetails }) => {
 
 
                 {/* pdf viewer  */}
-                <div className={`fixed inset-0 ${pdfViewer ? 'flex' : 'hidden'} items-center justify-center bg-black/20 z-10`}>
+                <div onClick={() => setPdfViewer(!pdfViewer)} className={`fixed inset-0 ${pdfViewer ? 'flex' : 'hidden'} items-center justify-center bg-black/20 z-10`}>
 
-                    <div className='relative'>
-                        <button className='absolute right-5 p-3 bg-white' onClick={() => setPdfViewer(!pdfViewer)}>Close</button>
+                    <div style={{ position: 'relative', height: '100vh', width: '100%', margin: '0 auto' }}>
+                        <button onClick={() => setPdfViewer(!pdfViewer)} className='absolute top-4 '>
+                            <IoClose className='text-2xl text-white' />
+                        </button>
                         <iframe
-                            src={book}
-                            // style={{ width: '100%', height: '100%' }}
-                            className='max-w-3xl w-[500px] h-96'
+                            src={pdf}
+                            width="100%"
+                            height="100%"
+                            style={{
+                                border: '1px solid #ddd',
+                                borderRadius: '8px',
+                                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+                            }}
                             title="PDF Viewer"
                         />
                     </div>
