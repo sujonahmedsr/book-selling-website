@@ -19,7 +19,8 @@ const Writers = () => {
             .filter((item => {
                 return writerSearch.toLowerCase() === '' ? item : item.name.toLowerCase().includes(writerSearch)
             })).map(d => <Link to={`/writerBooks/${d.slug}`} key={d.id}>
-                <div className="border-l-2 border-primary py-2 px-4">{d.name}</div>
+                <img src={d.img} alt="dummy imgage" className='w-20 mx-auto h-20 rounded-full ' />
+                <div className=" border-primary py-2 px-4">{d.name}</div>
             </Link>
             )
 
@@ -56,7 +57,7 @@ const Writers = () => {
                 </button>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 text-center gap-5">
                 {content}
             </div>
         </div>

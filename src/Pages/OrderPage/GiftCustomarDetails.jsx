@@ -17,6 +17,7 @@ const GiftCustomarDetails = () => {
     const [filteredUpazilas, setFilteredUpazilas] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("");
     const [selectedUpazila, setSelectedUpazila] = useState("");
+    const [erros, setError] = useState('')
 
     useEffect(() => {
         setDistricts(allDistricts)
@@ -123,7 +124,7 @@ const GiftCustomarDetails = () => {
             window.location.reload()
 
         } catch (error) {
-            console.log(formData, orderData);
+            setError(error.message)
             
             if (error.response) {
                 console.error('Server Error:', error.response.data);
@@ -395,6 +396,8 @@ const GiftCustomarDetails = () => {
                         </label>
                     </div>
                 </div> */}
+
+                <p className="text-red-500">{erros}</p>
 
                 {/* Submit Button */}
                 <div className="border-t border-gray-300 p-5">

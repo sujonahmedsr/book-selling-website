@@ -64,7 +64,7 @@ const SignUp = () => {
             
             // login 
             const loginResult = await login({
-                email: registrationData.email,
+                phone: registrationData.email,
                 password: registrationData.password,
             });
             if (loginResult.success) {

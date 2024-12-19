@@ -14,6 +14,7 @@ const CustomarShippingDetails = () => {
     const [filteredUpazilas, setFilteredUpazilas] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("");
     const [selectedUpazila, setSelectedUpazila] = useState("");
+    const [errors, setError] = useState('')
 
     useEffect(() => {
         setDistricts(allDistricts)
@@ -89,6 +90,7 @@ const CustomarShippingDetails = () => {
             window.location.reload()
 
         } catch (error) {
+            setError(error.message)
             if (error.response) {
                 console.error('Server Error:', error.response.data);
                 console.error('Status Code:', error.response.status);
@@ -237,6 +239,8 @@ const CustomarShippingDetails = () => {
                         </label>
                     </div>
                 </div>
+
+                <p className='text-red-500'>{errors}</p>
 
                 {/* Submit Button */}
                 <div className="border-t border-gray-300 p-5">

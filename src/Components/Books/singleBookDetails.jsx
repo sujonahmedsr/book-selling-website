@@ -30,8 +30,9 @@ const SingleBookDetails = ({ bookDetails }) => {
                         <div className='lg:col-span-3 col-span-1'>
                             <button onClick={() => setPdfViewer(!pdfViewer)} className=' text-primary'>
                                 <img alt="Look inside" src="https://wafilife-media.wafilife.com/uploads/2021/08/look-inside.png" /></button>
-                            <div className="h-80 max-w-60 w-full">
-                                {img && img.length > 0 && <img className="h-72 w-full mx-auto" src={img[0]} alt={title} />}
+                            <div onClick={() => setPdfViewer(!pdfViewer)} className="h-80 max-w-60 w-full cursor-pointer ">
+                                {img && img.length > 0 && <img className="h-72
+                                hover:pr-3 w-full mx-auto duration-300 bg-gray-400" src={img[0]} alt={title} />}
                             </div>
                         </div>
                         <div className='absolute top-2 right-2'>
