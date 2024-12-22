@@ -8,6 +8,7 @@ import { FaTwitter } from "react-icons/fa";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaRegHandshake } from "react-icons/fa6";
+import { listOfNavigation } from './Shared/navbarlist';
 const Footer = () => {
     return (
         <footer className='bg-gray-100 border-t'>
@@ -48,24 +49,16 @@ const Footer = () => {
                 <div>
                     <h1 className='text-base font-semibold mb-2 text-gray-600'>Home</h1>
                     <ul className='list-disc ml-5 text-gray-700 space-y-2'>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>About Us</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Books</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Electronics</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Accessories</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Gift Voucher</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Stationery</Link>
-                        </li>
+                        {
+                            listOfNavigation.map((item, id) => <div key={id + 1}>
+                                <li className={`hover:text-primary hover:pl-1 duration-200`}>
+                                <Link
+                                     to={item.link}>{item.title}</Link>
+                                </li>
+                                
+                            </div>)
+                        }
+                        
                     </ul>
                 </div>
 
@@ -90,60 +83,39 @@ const Footer = () => {
                     </ul>
                 </div>
                 <div>
-                    <h1 className='text-base font-semibold mb-2 text-gray-600'>Shop by</h1>
+                    <h1 className='text-base font-semibold mb-2 text-gray-600'>Importance Pages</h1>
                     <ul className='list-disc ml-5 text-gray-700 space-y-2'>
                         <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Book Category</Link>
+                            <Link to={'/about-us'}>
+                            About Us
+                            </Link>
                         </li>
                         <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Electronics Category</Link>
+                            <Link to={'/ReturnPolicy'}>Return Policy</Link>
                         </li>
                         <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Boi Mela 2024</Link>
+                            <Link to={'/RefundPolicy'}>Refund Policy</Link>
                         </li>
                         <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Islamic Book</Link>
+                            <Link to={'/ShippingPolicy'}>Shipping Policy</Link>
                         </li>
                         <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Foreign Books</Link>
+                            <Link to={'/TermsConditions'}>Terms Conditions</Link>
                         </li>
                         <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Best Selling</Link>
+                            <Link to={'/PrivacyPolicy'}>Privacy Policy</Link>
                         </li>
                         <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Extra Discount</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Stationery</Link>
+                            <Link to={'/ExchangePolicy'}>Exchange Policy</Link>
                         </li>
                     </ul>
                 </div>
                 <div>
                     <h1 className='text-base font-semibold mb-2 text-gray-600'>Support</h1>
                     <ul className='list-disc ml-5 text-gray-700 space-y-2'>
+
                         <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Order Track</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Contact Us</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Find My Product</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Customer FAQ</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Terms of Use</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Privacy Policy</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Happy Return Policy</Link>
-                        </li>
-                        <li className='hover:text-primary hover:pl-1 duration-200'>
-                            <Link>Refund Policy</Link>
+                            <Link to={'/ContactUs'}>Contact Us</Link>
                         </li>
                     </ul>
                 </div>

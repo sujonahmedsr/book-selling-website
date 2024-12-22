@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const RelatedProducts = ({relatedProducts}) => {
     return (
-        <div className='lg:col-span-3 col-span-1'>
+        <div className='lg:col-span-3 col-span-1 top-5 overflow-scroll h-[75vh] overflow-x-hidden'>
                 <div className='border border-gray-300 border-t border-t-primary'>
                     <h1 className='p-4'>আরো দেখুন…</h1>
                     <div className='flex flex-col'>

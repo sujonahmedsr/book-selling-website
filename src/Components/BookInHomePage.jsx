@@ -72,7 +72,7 @@ const BookInHomePage = () => {
                 loop={true}
                 navigation={true}
                 modules={[Navigation]}
-                className="mySwiper mt-10">
+                className="mySwiper mt-5 bg-white">
                 {content}
             </Swiper>
         </div>

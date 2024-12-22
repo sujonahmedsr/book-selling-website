@@ -21,6 +21,9 @@ export const getBooksApi = createApi({
         getAutors: builder.query({
             query: () => `/authors`
         }),
+        getSingleAutor: builder.query({
+            query: (slug) => `/author/${slug}`
+        }),
         getPublications: builder.query({
             query: () => `/publications`
         }),
@@ -42,7 +45,28 @@ export const getBooksApi = createApi({
         getProfile: builder.query({
             query: (id) => `/getProfile/${id}`
         }),
+        aboutUs: builder.query({
+            query: () => `/about-us`
+        }),
+        returnPolicy: builder.query({
+            query: () => `/return-policy`
+        }),
+        refundPolicy: builder.query({
+            query: () => `/refund-policy`
+        }),
+        shippingPolycy: builder.query({
+            query: () => `/shipping-policy`
+        }),
+        termsConditions: builder.query({
+            query: () => `/terms-conditions`
+        }),
+        privacyPolicy: builder.query({
+            query: () => `/privacy-policy`
+        }),
+        exchangePolicy: builder.query({
+            query: () => `/exchange-policy`
+        }),
     })
 })
 
-export const { useBooksProductsApiQuery, useSingleBooksApiQuery, useGetCategoryQuery, useGetAutorsQuery, useGetPublicationsQuery, useGetSubjectsQuery, useAllDistrictQuery, useAllUpazilasQuery, useGetProfileQuery } = getBooksApi
+export const { useBooksProductsApiQuery, useSingleBooksApiQuery, useGetCategoryQuery, useGetAutorsQuery, useGetPublicationsQuery, useGetSubjectsQuery, useAllDistrictQuery, useAllUpazilasQuery, useGetProfileQuery, useGetSingleAutorQuery, useAboutUsQuery, useExchangePolicyQuery, useRefundPolicyQuery, useReturnPolicyQuery, useTermsConditionsQuery, usePrivacyPolicyQuery, useShippingPolycyQuery } = getBooksApi

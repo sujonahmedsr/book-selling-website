@@ -9,10 +9,11 @@ import { useState } from 'react';
 import RelatedProducts from './RelatedProducts';
 import ReviewBooks from './ReviewBooks';
 import { IoClose } from "react-icons/io5";
+import BooksSpecification from './booksSpecification';
 
 const SingleBookDetails = ({ bookDetails }) => {
     const { title, price, sell_price, img, number_of_page, author, publication, subject, edition, pdf, relatedProducts } = bookDetails
-
+    
 
     const dispatch = useDispatch()
     const handleCart = () => {
@@ -20,7 +21,6 @@ const SingleBookDetails = ({ bookDetails }) => {
     }
 
     const [pdfViewer, setPdfViewer] = useState(false)
-
 
     return (
         <>
@@ -34,11 +34,6 @@ const SingleBookDetails = ({ bookDetails }) => {
                                 {img && img.length > 0 && <img className="h-72
                                 hover:pr-3 w-full mx-auto duration-300 bg-gray-400" src={img[0]} alt={title} />}
                             </div>
-                        </div>
-                        <div className='absolute top-2 right-2'>
-                            {/* <Link to={-1}>
-                                <IoClose className='text-2xl hover:text-primary duration-300'></IoClose>
-                            </Link> */}
                         </div>
                         <div className="lg:col-span-9 col-span-1 text-base">
                             <div className="space-y-1">
@@ -85,12 +80,15 @@ const SingleBookDetails = ({ bookDetails }) => {
                         </div>
                     </div>
 
+                    <BooksSpecification bookDetails={bookDetails}></BooksSpecification>
 
                     <ReviewBooks bookDetails={bookDetails}></ReviewBooks>
                 </div>
 
                 {/* related products  */}
                 <RelatedProducts relatedProducts={relatedProducts}></RelatedProducts>
+
+
 
 
 

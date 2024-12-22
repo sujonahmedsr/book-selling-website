@@ -19,7 +19,7 @@ const Writers = () => {
             .filter((item => {
                 return writerSearch.toLowerCase() === '' ? item : item.name.toLowerCase().includes(writerSearch)
             })).map(d => <Link to={`/writerBooks/${d.slug}`} key={d.id}>
-                <img src={d.img} alt="dummy imgage" className='w-20 mx-auto h-20 rounded-full ' />
+                <img src={d.img} alt="dummy imgage" className='w-20 mx-auto h-20 rounded-full border-2 border-gray-300' />
                 <div className=" border-primary py-2 px-4">{d.name}</div>
             </Link>
             )

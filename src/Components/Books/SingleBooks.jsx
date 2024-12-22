@@ -15,7 +15,7 @@ const SingleBooks = ({ book }) => {
     }
 
     return (
-        <div className=" bg-white rounded-lg shadow p-3 space-y-3 duration-300 group relative cursor-pointer">
+        <div className=" bg-white rounded-lg hover:shadow-md p-3 space-y-3 duration-300 group relative cursor-pointer my-2">
             <Link to={`/booksDetails/${slug}`}>
                 <img className="h-40 mx-auto" src={img} alt="product image" />
             </Link>

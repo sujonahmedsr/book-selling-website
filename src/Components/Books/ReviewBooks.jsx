@@ -13,7 +13,6 @@ const ReviewBooks = ({ bookDetails }) => {
     const [review, setReview] = useState("");
     const [show, setShow] = useState(false)
 
-
     const handleRatingClick = (star) => {
         setRating(star);
     };
@@ -24,10 +23,10 @@ const ReviewBooks = ({ bookDetails }) => {
         e.preventDefault();
         const formData = {
             product_id: id,
-            customer_id: '',
+            customer_id: user?.id,
             rating,
             review,
-            img: '',
+            img: user?.img,
         };
 
         try {

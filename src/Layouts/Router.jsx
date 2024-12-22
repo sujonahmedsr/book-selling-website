@@ -23,6 +23,14 @@ import GiftOrderDetails from "../Pages/OrderPage/GiftOrderDetails";
 import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 import MyProfile from "../Components/MyProfile";
 import UpdateProfile from "../Components/UpdateProfile";
+import AboutUs from "../Components/importantPages/AboutUs";
+import ReturnPolicy from "../Components/importantPages/ReturnPolicy";
+import RefundPolicy from "../Components/importantPages/RefundPolicy";
+import ShippingPolicy from "../Components/importantPages/ShippingPolicy";
+import TermsConditions from "../Components/importantPages/TermsConditions";
+import PrivacyPolicy from "../Components/importantPages/PrivacyPolicy";
+import ExchangePolicy from "../Components/importantPages/ExchangePolicy";
+import ContactUs from "../Components/importantPages/ContactUs";
 
 const router = createBrowserRouter([
     {
@@ -124,6 +132,38 @@ const router = createBrowserRouter([
             {
                 path: '/OrderSuccessMessage',
                 element: <SuccessOrderMessage></SuccessOrderMessage>
+            },
+            {
+                path: '/about-us',
+                element: <AboutUs></AboutUs>
+            },
+            {
+                path: '/ReturnPolicy',
+                element: <ReturnPolicy></ReturnPolicy>
+            },
+            {
+                path: '/RefundPolicy',
+                element: <RefundPolicy></RefundPolicy>
+            },
+            {
+                path: '/ShippingPolicy',
+                element: <ShippingPolicy></ShippingPolicy>
+            },
+            {
+                path: '/TermsConditions',
+                element: <TermsConditions></TermsConditions>
+            },
+            {
+                path: '/PrivacyPolicy',
+                element: <PrivacyPolicy></PrivacyPolicy>
+            },
+            {
+                path: '/ExchangePolicy',
+                element: <ExchangePolicy></ExchangePolicy>
+            },
+            {
+                path: '/ContactUs',
+                element: <ContactUs></ContactUs>
             },
         ]
     },

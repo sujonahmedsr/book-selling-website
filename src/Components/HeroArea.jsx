@@ -72,7 +72,7 @@ const HeroArea = () => {
 
         {
           data?.map(d => <SwiperSlide key={d.id}>
-            <img src={d.img} alt="dummy imgage" className='min-h-64 w-full h-full bg-cover' />
+            <img src={d.img} alt="dummy imgage" className='p-2 mt-2 bg-white container mx-auto min-h-64 w-full h-full bg-cover rounded' />
           </SwiperSlide>)
         }
       </Swiper>

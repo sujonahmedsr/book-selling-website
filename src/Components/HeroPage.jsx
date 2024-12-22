@@ -13,7 +13,7 @@ const HeroPage = () => {
             <HeroArea></HeroArea>
             <div className="mt-24 container mx-auto">
                 {/* todo : delete this form here  */}
-                <div className="flex items-center justify-between border border-gray-200 shadow-lg p-5">
+                <div className="flex items-center justify-between border border-gray-200 shadow-lg p-5 bg-white">
                     <h1 className="text-lg font-semibold text-primary">নতুন প্রকাশিত বই
                     </h1>
                     <Link to={'/AllBooks'}>

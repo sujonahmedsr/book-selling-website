@@ -34,7 +34,7 @@ const Writer = () => {
         content = allAuthors?.data?.map(d =>
             <SwiperSlide key={d.id} className="flex items-center flex-col gap-4 text-center">
                 <Link to={`/writerBooks/${d.slug}`} >
-                    <img src={d.img} alt="dummy imgage" className='w-20 mx-auto h-20 rounded-full ' />
+                    <img src={d.img} alt="dummy imgage" className='w-20 mx-auto h-20 rounded-full border-2 border-gray-300' />
                     <h1 className="pt-5">{d.name}</h1>
                 </Link>
             </SwiperSlide>
@@ -44,7 +44,7 @@ const Writer = () => {
 
     return (
         <div className="container mx-auto mt-24">
-            <div className="flex items-center justify-between border border-gray-200 shadow-lg p-5">
+            <div className="flex items-center justify-between border border-gray-200 shadow-lg p-5 bg-white">
                 <h1 className="text-lg font-semibold text-primary">জনপ্রিয় লেখক</h1>
                 <Link to={'/writers'}>
                     <button className="px-4 py-2 border border-gray-100 bg-primary text-white hover:bg-gray-700 duration-300">সকল লেখক</button>
@@ -84,7 +84,7 @@ const Writer = () => {
                         },
                     }}
                     loop={true}
-                    className="mySwiper mt-10 mb-20">
+                    className="mySwiper mt-10 mb-20 bg-white">
                     {
                         content
                     }
